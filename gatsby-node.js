@@ -12,6 +12,9 @@ exports.createPages = async ({ actions, graphql }) => {
               url
             }
           }
+          location
+          date
+          gallery
         }
       }
     }
@@ -31,6 +34,9 @@ exports.createPages = async ({ actions, graphql }) => {
       context: {
         slug: exhibition.slug,
         exhibitionTitle: exhibition.title,
+        location: exhibition.location,
+        date: exhibition.date,
+        gallery: exhibition.gallery,
         pressRelease: exhibition.pressRelease.file.url,
         previous,
         next,
