@@ -7,6 +7,7 @@ export const useExhibitions = () => {
         nodes {
           title
           slug
+          id
         }
       }
     }

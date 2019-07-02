@@ -8,11 +8,16 @@ import { useExhibitions } from "../hooks/useExhibitions"
 const IndexPage = () => {
   const exhibitions = useExhibitions()
 
+  const renderExhibitionTitles = exhibitions.map(item => (
+    <li key={item.id}>
+      <Link to={`/${item.slug}`}>{item.title}</Link>
+    </li>
+  ))
+
   return (
     <Layout>
       <SEO title="Home" />
-      <h2>{exhibitions[0].title}</h2>
-      <h2>{exhibitions[1].title}</h2>
+      <ul>{renderExhibitionTitles}</ul>
     </Layout>
   )
 }

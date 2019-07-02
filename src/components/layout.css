@@ -1,3 +1,11 @@
+:root {
+  --sand: #9c9082;
+  --blue: #5e5469;
+  --gold: #574724;
+  --white: #faf8f5;
+  --pink: #fac7c7;
+}
+
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
