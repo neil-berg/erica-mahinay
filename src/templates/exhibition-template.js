@@ -5,7 +5,6 @@ import styled from "styled-components"
 
 import SEO from "../components/seo"
 import Layout from "../components/layout"
-import Sidebar from "../components/Sidebar"
 
 export const query = graphql`
   query($exhibitionTitle: String!) {
@@ -40,30 +39,36 @@ const ExhibitionTemplate = props => {
         title={props.pageContext.exhibitionTitle}
         description={`Exhibition page fror ${props.pageContext.exhibitionTitle}`}
       />
-      <TemplateWrapper>
-        <header>
-          <h1>{props.pageContext.exhibitionTitle}</h1>
-          <p>{props.pageContext.date}</p>
-          <p>{props.pageContext.gallery}</p>
-          <p>{props.pageContext.location}</p>
-        </header>
-        <a
-          className="header__press-release"
-          href={props.pageContext.pressRelease}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Press release
-        </a>
-        <section>{renderImages}</section>
-      </TemplateWrapper>
-      <Sidebar />
+      <div style={{ maxWidth: "960px", margin: "0 auto" }}>
+        <TemplateWrapper>
+          <header>
+            <h1>{props.pageContext.exhibitionTitle}</h1>
+            <p>{props.pageContext.date}</p>
+            <p>{props.pageContext.gallery}</p>
+            <p>{props.pageContext.location}</p>
+          </header>
+          <a
+            className="header__press-release"
+            href={props.pageContext.pressRelease}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Press release
+          </a>
+          <section>{renderImages}</section>
+        </TemplateWrapper>
+      </div>
     </Layout>
   )
 }
 
 const TemplateWrapper = styled.div`
-  margin-left: 200px;
+  margin-top: 50px;
+  padding: 1rem;
+
+  @media screen and (min-width: 960px) {
+    padding: 0 0 0 250px;
+  }
 `
 
 export default ExhibitionTemplate
