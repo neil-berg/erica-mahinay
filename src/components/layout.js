@@ -18,7 +18,7 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <Sidebar />
+      {/* <Sidebar /> */}
       <main>{children}</main>
       <footer>
         © {new Date().getFullYear()}, Built with

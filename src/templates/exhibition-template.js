@@ -1,10 +1,11 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
-import Img from "gatsby-image"
 import styled from "styled-components"
 
 import SEO from "../components/seo"
 import Layout from "../components/layout"
+import Sidebar from "../components/Sidebar"
+import ImageCard from "../components/ImageCard"
 
 export const query = graphql`
   query($exhibitionTitle: String!) {
@@ -18,7 +19,7 @@ export const query = graphql`
         title
         year(formatString: "YYYY")
         imageFile {
-          fluid(maxWidth: 960) {
+          fluid(maxWidth: 600) {
             ...GatsbyContentfulFluid_withWebp
           }
         }
@@ -30,8 +31,8 @@ export const query = graphql`
 
 const ExhibitionTemplate = props => {
   const images = props.data.allContentfulImage.nodes
-  const renderImages = images.map((image, i) => (
-    <Img fluid={image.imageFile.fluid} key={image.id} />
+  const renderImages = images.map(image => (
+    <ImageCard key={image.id} image={image} />
   ))
   return (
     <Layout>
@@ -39,35 +40,70 @@ const ExhibitionTemplate = props => {
         title={props.pageContext.exhibitionTitle}
         description={`Exhibition page fror ${props.pageContext.exhibitionTitle}`}
       />
-      <div style={{ maxWidth: "960px", margin: "0 auto" }}>
-        <TemplateWrapper>
-          <header>
-            <h1>{props.pageContext.exhibitionTitle}</h1>
-            <p>{props.pageContext.date}</p>
-            <p>{props.pageContext.gallery}</p>
-            <p>{props.pageContext.location}</p>
-          </header>
+      <TemplateWrapper>
+        <header className="header">
+          <h2 className="header__exhibition-title">
+            {props.pageContext.exhibitionTitle}
+          </h2>
+          <h3 className="header__exhibition-date">{props.pageContext.date}</h3>
+          <h3 className="header__exhibition-gallery">
+            {props.pageContext.gallery}
+          </h3>
+          <h3 className="header__exhibition-location">
+            {props.pageContext.location}
+          </h3>
           <a
-            className="header__press-release"
+            className="header__exhibition-press-release"
             href={props.pageContext.pressRelease}
             target="_blank"
             rel="noopener noreferrer"
           >
             Press release
           </a>
-          <section>{renderImages}</section>
-        </TemplateWrapper>
-      </div>
+        </header>
+        <section className="exhibition__images">{renderImages}</section>
+      </TemplateWrapper>
+      <Sidebar />
     </Layout>
   )
 }
 
 const TemplateWrapper = styled.div`
-  margin-top: 50px;
-  padding: 1rem;
+  .header,
+  .exhibition__images {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+
+  .header {
+    margin-top: 50px;
+    color: var(--gold);
+  }
+
+  .header__exhibition-title {
+    font-size: 2em;
+    margin-bottom: 1rem;
+  }
+
+  .header__exhibition-date,
+  .header__exhibition-gallery,
+  .header__exhibition-location {
+    font-size: 1em;
+    font-weight: normal;
+    padding-bottom: 0.35rem;
+  }
+
+  .header__exhibition-press-release {
+    color: var(--blue);
+  }
 
   @media screen and (min-width: 960px) {
-    padding: 0 0 0 250px;
+    margin-left: 250px;
+
+    .exhibition__header {
+      margin-top: 0;
+    }
   }
 `
 

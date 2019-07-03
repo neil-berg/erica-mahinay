@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faEllipsisV, faEllipsisH } from "@fortawesome/free-solid-svg-icons"
 
 import { useExhibitions } from "../hooks/useExhibitions"
 
@@ -9,7 +11,7 @@ const Sidebar = () => {
   const [isOnDisplayOpen, setIsOnDisplayOpen] = useState(true)
   const [isExhibitionsOpen, setIsExhibitionsOpen] = useState(true)
   const [isWritingOpen, setIsWritingOpen] = useState(true)
-  console.log(isSideDrawerOpen)
+
   // Retrieve exhibition titles from CMS and create a list of them
   const exhibitions = useExhibitions()
   const renderExhibitionTitles = exhibitions.map(item => (
@@ -26,12 +28,20 @@ const Sidebar = () => {
   return (
     <>
       <Header>
-        <i
-          className="header__icon"
-          onClick={() => setIsSideDrawerOpen(!isSideDrawerOpen)}
-        >
-          {isSideDrawerOpen ? "Close" : "Open"}
-        </i>
+        {isSideDrawerOpen ? (
+          <FontAwesomeIcon
+            className="header__icon"
+            icon={faEllipsisH}
+            onClick={() => setIsSideDrawerOpen(!isSideDrawerOpen)}
+          />
+        ) : (
+          <FontAwesomeIcon
+            className="header__icon"
+            icon={faEllipsisV}
+            onClick={() => setIsSideDrawerOpen(!isSideDrawerOpen)}
+          />
+        )}
+
         <h2 className="header__text">
           <Link className="header__text-link" to="/">
             Erica Mahinay
@@ -99,6 +109,7 @@ const Header = styled.header`
     position: absolute;
     left: 1rem;
     color: var(--white);
+    font-size: 1.5rem;
   }
 
   .header__text-link {
