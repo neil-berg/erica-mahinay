@@ -104,28 +104,23 @@ const Header = styled.header`
   justify-content: center;
   background: var(--blue);
   z-index: 2;
-
   .header__icon {
     position: absolute;
     left: 1rem;
     color: var(--white);
     font-size: 1.5rem;
   }
-
   .header__text-link {
     color: var(--sand);
     text-decoration: none;
     transition: 0.3s;
   }
-
   .header__text-link:hover,
   .header__text-link:active {
     color: var(--pink);
   }
-
   @media screen and (min-width: 960px) {
     width: 250px;
-
     .header__icon {
       display: none;
     }
@@ -143,13 +138,11 @@ const SideDrawer = styled.nav`
   overflow-x: hidden;
   transition: width 0.3s linear;
   z-index: 2;
-
   > h2,
   h3,
   ul {
     padding: 0.25rem 0.5rem;
   }
-
   .nav-list-header {
     display: flex;
     align-items: center;
@@ -157,7 +150,6 @@ const SideDrawer = styled.nav`
     border-top: 1px var(--sand) solid;
     border-bottom: 1px var(--sand) solid;
   }
-
   .nav-list-on-display {
     transform: ${props =>
       props.isOnDisplayOpen ? "rotateX(0)" : "rotateX(90deg)"};
@@ -165,7 +157,6 @@ const SideDrawer = styled.nav`
     max-height: ${props => (props.isOnDisplayOpen ? "400px" : "0")};
     transition: all 0.3s;
   }
-
   .nav-list-exhibitions {
     transform: ${props =>
       props.isExhibitionsOpen ? "rotateX(0)" : "rotateX(90deg)"};
@@ -173,7 +164,6 @@ const SideDrawer = styled.nav`
     max-height: ${props => (props.isExhibitionsOpen ? "400px" : "0")};
     transition: all 0.3s;
   }
-
   .nav-list-writing {
     transform: ${props =>
       props.isWritingOpen ? "rotateX(0)" : "rotateX(90deg)"};
@@ -181,19 +171,16 @@ const SideDrawer = styled.nav`
     max-height: ${props => (props.isWritingOpen ? "400px" : "0")};
     transition: all 0.3s;
   }
-
   .nav-list__item-link {
     color: inherit;
     text-decoration: none;
     transition: all 0.3s linear;
   }
-
   .nav-list__item-link:active,
   .nav-list__item-link:hover {
     outline-width: 0;
     color: var(--pink);
   }
-
   @media screen and (min-width: 960px) {
     width: 250px;
   }
