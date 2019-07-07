@@ -4,7 +4,6 @@ import styled from "styled-components"
 
 import SEO from "../components/seo"
 import Layout from "../components/layout"
-import Sidebar from "../components/Sidebar"
 import ImageCard from "../components/ImageCard"
 
 export const query = graphql`
@@ -63,7 +62,6 @@ const ExhibitionTemplate = props => {
         </header>
         <section className="exhibition__images">{renderImages}</section>
       </TemplateWrapper>
-      <Sidebar />
     </Layout>
   )
 }

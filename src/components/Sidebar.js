@@ -2,15 +2,23 @@ import React, { useState } from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faEllipsisV, faEllipsisH } from "@fortawesome/free-solid-svg-icons"
+import { faTimes, faBars } from "@fortawesome/free-solid-svg-icons"
 
 import { useExhibitions } from "../hooks/useExhibitions"
 
 const Sidebar = () => {
   const [isSideDrawerOpen, setIsSideDrawerOpen] = useState(false)
   const [isOnDisplayOpen, setIsOnDisplayOpen] = useState(true)
-  const [isExhibitionsOpen, setIsExhibitionsOpen] = useState(true)
-  const [isWritingOpen, setIsWritingOpen] = useState(true)
+
+  const handleOpenClick = () => {
+    document.body.classList.add("no-scroll")
+    setIsSideDrawerOpen(true)
+  }
+
+  const handleCloseClick = () => {
+    document.body.classList.remove("no-scroll")
+    setIsSideDrawerOpen(false)
+  }
 
   // Retrieve exhibition titles from CMS and create a list of them
   const exhibitions = useExhibitions()
@@ -18,7 +26,7 @@ const Sidebar = () => {
     <li
       className="nav-list__item"
       key={item.id}
-      onClick={() => setIsSideDrawerOpen(!isSideDrawerOpen)}
+      onClick={() => handleCloseClick()}
     >
       <Link className="nav-list__item-link" to={`/${item.slug}`}>
         {item.title}
@@ -31,14 +39,14 @@ const Sidebar = () => {
         {isSideDrawerOpen ? (
           <FontAwesomeIcon
             className="header__icon"
-            icon={faEllipsisH}
-            onClick={() => setIsSideDrawerOpen(!isSideDrawerOpen)}
+            icon={faTimes}
+            onClick={() => handleCloseClick()}
           />
         ) : (
           <FontAwesomeIcon
             className="header__icon"
-            icon={faEllipsisV}
-            onClick={() => setIsSideDrawerOpen(!isSideDrawerOpen)}
+            icon={faBars}
+            onClick={() => handleOpenClick()}
           />
         )}
 
@@ -48,37 +56,20 @@ const Sidebar = () => {
           </Link>
         </h2>
       </Header>
-      <SideDrawer
-        isSideDrawerOpen={isSideDrawerOpen}
-        isOnDisplayOpen={isOnDisplayOpen}
-        isExhibitionsOpen={isExhibitionsOpen}
-        isWritingOpen={isWritingOpen}
-      >
-        <h3
-          className="nav-list-header"
-          onClick={() => setIsOnDisplayOpen(!isOnDisplayOpen)}
-        >
+      <SideDrawer isSideDrawerOpen={isSideDrawerOpen}>
+        <h3 className="nav-list-header">
           <span className="nav-list-header__text">On Display</span>
-          <i>{isOnDisplayOpen ? "U" : ">>"}</i>
         </h3>
         <ul className="nav-list-on-display">
           <li className="nav-list__item">Euclid</li>
           <li className="nav-list__item">Touch Knows Before Language</li>
         </ul>
-        <h3
-          className="nav-list-header"
-          onClick={() => setIsExhibitionsOpen(!isExhibitionsOpen)}
-        >
+        <h3 className="nav-list-header">
           <span className="nav-list-header__text">Exhibitions</span>
-          <i>{isExhibitionsOpen ? "U" : ">>"}</i>
         </h3>
         <ul className="nav-list-exhibitions">{renderExhibitionTitles}</ul>
-        <h3
-          className="nav-list-header"
-          onClick={() => setIsWritingOpen(!isWritingOpen)}
-        >
+        <h3 className="nav-list-header">
           <span className="nav-list-header__text">Writing</span>
-          <i>{isWritingOpen ? "U" : ">>"}</i>
         </h3>
         <ul className="nav-list-writing">
           <li className="nav-list__item">Press</li>
@@ -138,11 +129,7 @@ const SideDrawer = styled.nav`
   overflow-x: hidden;
   transition: width 0.3s linear;
   z-index: 2;
-  > h2,
-  h3,
-  ul {
-    padding: 0.25rem 0.5rem;
-  }
+
   .nav-list-header {
     display: flex;
     align-items: center;
@@ -150,27 +137,7 @@ const SideDrawer = styled.nav`
     border-top: 1px var(--sand) solid;
     border-bottom: 1px var(--sand) solid;
   }
-  .nav-list-on-display {
-    transform: ${props =>
-      props.isOnDisplayOpen ? "rotateX(0)" : "rotateX(90deg)"};
-    overflow: ${props => (props.isOnDisplayOpen ? "" : "hidden")};
-    max-height: ${props => (props.isOnDisplayOpen ? "400px" : "0")};
-    transition: all 0.3s;
-  }
-  .nav-list-exhibitions {
-    transform: ${props =>
-      props.isExhibitionsOpen ? "rotateX(0)" : "rotateX(90deg)"};
-    overflow: ${props => (props.isExhibitionsOpen ? "" : "hidden")};
-    max-height: ${props => (props.isExhibitionsOpen ? "400px" : "0")};
-    transition: all 0.3s;
-  }
-  .nav-list-writing {
-    transform: ${props =>
-      props.isWritingOpen ? "rotateX(0)" : "rotateX(90deg)"};
-    overflow: ${props => (props.isWritingOpen ? "" : "hidden")};
-    max-height: ${props => (props.isWritingOpen ? "400px" : "0")};
-    transition: all 0.3s;
-  }
+
   .nav-list__item-link {
     color: inherit;
     text-decoration: none;
