@@ -1,18 +1,23 @@
-import React from "react"
+import React, { useState } from "react"
 import PropTypes from "prop-types"
 
-import Sidebar from "./Sidebar"
+import Header from "./Header"
+import SmallMenu from "./SmallMenu"
+import LargeMenu from "./LargeMenu"
+import Footer from "./Footer"
+
 import "./layout.css"
 
 const Layout = ({ children }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
   return (
     <>
-      <Sidebar />
+      <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+      <SmallMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+      <LargeMenu />
       <main>{children}</main>
-      <footer>
-        site by
-        <a href="https://neilberg.dev">neil berg</a>
-      </footer>
+      <Footer />
     </>
   )
 }

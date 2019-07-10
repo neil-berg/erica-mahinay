@@ -1,42 +1,92 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
 import React from "react"
+import { Link } from "gatsby"
+import styled from "styled-components"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faTimes, faBars } from "@fortawesome/free-solid-svg-icons"
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `var(--blue)`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `var(--pink)`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
+const Header = ({ isMenuOpen, setIsMenuOpen }) => {
+  const handleOpenClick = () => {
+    document.body.classList.add("no-scroll")
+    setIsMenuOpen(true)
+  }
+
+  const handleCloseClick = () => {
+    document.body.classList.remove("no-scroll")
+    setIsMenuOpen(false)
+  }
+
+  return (
+    <StyledHeader>
+      {isMenuOpen ? (
+        <FontAwesomeIcon
+          className="header__icon"
+          icon={faTimes}
+          onClick={() => handleCloseClick()}
+        />
+      ) : (
+        <FontAwesomeIcon
+          className="header__icon"
+          icon={faBars}
+          onClick={() => handleOpenClick()}
+        />
+      )}
+      <h1 className="header__text">
+        <Link className="header__text-link" to="/">
+          Erica Mahinay
         </Link>
       </h1>
-    </div>
-  </header>
-)
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
+    </StyledHeader>
+  )
 }
 
-Header.defaultProps = {
-  siteTitle: ``,
-}
+const StyledHeader = styled.header`
+  width: 100vw;
+  height: 50px;
+  background: var(--blue);
+  color: var(--sand);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .header__icon {
+    position: absolute;
+    left: 1rem;
+    color: var(--white);
+    font-size: 1.5rem;
+  }
+
+  .header__text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header__text-link {
+    font-size: 1.5rem;
+    color: var(--sand);
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  .header__text-link:active {
+    color: var(--pink);
+  }
+
+  @media (hover: hover) {
+    .header__text-link:hover {
+      color: var(--pink);
+    }
+  }
+
+  @media screen and (min-width: 960px) {
+    width: 250px;
+    .header__icon {
+      display: none;
+      pointer-events: none;
+    }
+  }
+`
 
 export default Header
