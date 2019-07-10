@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import PropTypes from "prop-types"
 
-import NewHeader from "./NewHeader"
+import Header from "./Header"
 import SmallMenu from "./SmallMenu"
 import LargeMenu from "./LargeMenu"
 import Footer from "./Footer"
@@ -13,7 +13,7 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <NewHeader isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+      <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       <SmallMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       <LargeMenu />
       <main>{children}</main>

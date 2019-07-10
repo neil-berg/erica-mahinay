@@ -40,7 +40,7 @@ const ExhibitionTemplate = props => {
         description={`Exhibition page fror ${props.pageContext.exhibitionTitle}`}
       />
       <TemplateWrapper>
-        <header className="header">
+        <div className="header">
           <h2 className="header__exhibition-title">
             {props.pageContext.exhibitionTitle}
           </h2>
@@ -59,7 +59,7 @@ const ExhibitionTemplate = props => {
           >
             Press release
           </a>
-        </header>
+        </div>
         <section className="exhibition__images">{renderImages}</section>
       </TemplateWrapper>
     </Layout>
