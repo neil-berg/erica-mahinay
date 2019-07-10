@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import PropTypes from "prop-types"
 
-import Header from "./Header"
+import Header from "./header"
 import SmallMenu from "./SmallMenu"
 import LargeMenu from "./LargeMenu"
 import Footer from "./Footer"
