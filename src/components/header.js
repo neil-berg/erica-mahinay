@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTimes, faBars } from "@fortawesome/free-solid-svg-icons"
 
-const Header = ({ isMenuOpen, setIsMenuOpen }) => {
+const NewHeader = ({ isMenuOpen, setIsMenuOpen }) => {
   const handleOpenClick = () => {
     document.body.classList.add("no-scroll")
     setIsMenuOpen(true)
@@ -88,4 +88,4 @@ const StyledHeader = styled.header`
   }
 `
 
-export default Header
+export default NewHeader
