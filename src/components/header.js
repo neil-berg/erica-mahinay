@@ -84,7 +84,6 @@ const StyledHeader = styled.header`
     width: 250px;
     .header__icon {
       display: none;
-      pointer-events: none;
     }
   }
 `
