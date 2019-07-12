@@ -68,12 +68,15 @@ const StyledMenu = styled(animated.nav)`
   color: var(--sand);
   z-index: 2;
 
+  h3,
+  ul > li {
+    transform: rotate(-15deg);
+  }
+
   .nav-list-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-top: 1px var(--sand) solid;
-    border-bottom: 1px var(--sand) solid;
   }
 
   .nav-list__item-link {

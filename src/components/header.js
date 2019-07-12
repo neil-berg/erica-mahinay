@@ -40,6 +40,9 @@ const NewHeader = ({ isMenuOpen, setIsMenuOpen }) => {
 }
 
 const StyledHeader = styled.header`
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 50px;
   background: var(--blue);
@@ -81,9 +84,13 @@ const StyledHeader = styled.header`
   }
 
   @media screen and (min-width: 960px) {
-    width: 250px;
+    width: 300px;
+    height: 100px;
     .header__icon {
       display: none;
+    }
+    .header__text {
+      transform: rotate(-15deg);
     }
   }
 `
