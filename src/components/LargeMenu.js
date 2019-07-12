@@ -43,20 +43,28 @@ const LargeMenu = () => {
 
 const StyledMenu = styled.nav`
   position: fixed;
-  top: 50px;
+  top: 100px;
   left: 0;
   height: 100vh;
-  width: 250px;
+  width: 300px;
   background: var(--blue);
   color: var(--sand);
   z-index: 2;
+  padding: 0 0.5rem;
+
+  h3,
+  ul {
+    transform: rotate(-15deg);
+  }
+
+  .nav-list__item {
+    padding-left: 1.75rem;
+  }
 
   .nav-list-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-top: 1px var(--sand) solid;
-    border-bottom: 1px var(--sand) solid;
   }
 
   .nav-list__item-link {
