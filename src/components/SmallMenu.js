@@ -67,6 +67,7 @@ const StyledMenu = styled(animated.nav)`
   background: var(--blue);
   color: var(--sand);
   z-index: 2;
+  overflow: scroll;
 
   h3,
   ul > li {
