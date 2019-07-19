@@ -6,18 +6,13 @@ import styled from "styled-components"
 import { useExhibitions } from "../hooks/useExhibitions"
 
 const SmallMenu = ({ isMenuOpen, setIsMenuOpen }) => {
-  const handleCloseClick = () => {
-    document.body.classList.remove("no-scroll")
-    setIsMenuOpen(false)
-  }
-
   // Retrieve exhibition titles from CMS and create a list of them
   const exhibitions = useExhibitions()
   const renderExhibitionTitles = exhibitions.map(item => (
     <li
       className="nav-list__item"
       key={item.id}
-      onClick={() => handleCloseClick()}
+      // onClick={() => handleCloseClick()}
     >
       <Link className="nav-list__item-link" to={`/${item.slug}`}>
         {item.title}
@@ -33,7 +28,18 @@ const SmallMenu = ({ isMenuOpen, setIsMenuOpen }) => {
   })
 
   return (
-    <StyledMenu style={animation}>
+    <StyledMenu
+      style={animation}
+      onClick={e => {
+        const className = e.target.className
+        if (
+          className === "nav-list__item" ||
+          className === "nav-list__item-link"
+        ) {
+          setIsMenuOpen(false)
+        }
+      }}
+    >
       <h3 className="nav-list-header">
         <span className="nav-list-header__text">On Display</span>
       </h3>
@@ -50,7 +56,11 @@ const SmallMenu = ({ isMenuOpen, setIsMenuOpen }) => {
       </h3>
       <ul className="nav-list-writing">
         <li className="nav-list__item">Press</li>
-        <li className="nav-list__item">Thoughts</li>
+        <li className="nav-list__item">
+          <Link className="nav-list__item-link" to="/thoughts">
+            Thoughts
+          </Link>
+        </li>
       </ul>
       <h3 className="nav-item">Contact</h3>
       <h3 className="nav-item">CV</h3>
@@ -67,6 +77,7 @@ const StyledMenu = styled(animated.nav)`
   background: var(--blue);
   color: var(--sand);
   z-index: 2;
+  overflow-y: scroll;
 
   h3,
   ul > li {

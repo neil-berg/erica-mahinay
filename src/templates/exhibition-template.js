@@ -97,7 +97,7 @@ const TemplateWrapper = styled.div`
   }
 
   @media screen and (min-width: 960px) {
-    margin-left: 250px;
+    margin-left: 300px;
 
     .exhibition__header {
       margin-top: 0;

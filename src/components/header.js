@@ -52,6 +52,7 @@ const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 2;
 
   .header__icon {
     position: absolute;
