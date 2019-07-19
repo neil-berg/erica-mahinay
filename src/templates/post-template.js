@@ -33,6 +33,10 @@ const PostTemplate = ({ data, pageContext }) => {
       "embedded-asset-block": node => {
         const alt = node.data.target.fields.title["en-US"]
         const url = node.data.target.fields.file["en-US"].url
+        // const contentType = node.data.target.fields.file[
+        //   "en-US"
+        // ].contentType.split("/")[0]
+        // console.log(contentType)
         return <img src={url} alt={alt} />
       },
     },

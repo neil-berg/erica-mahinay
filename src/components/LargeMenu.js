@@ -33,7 +33,11 @@ const LargeMenu = () => {
       </h3>
       <ul className="nav-list-writing">
         <li className="nav-list__item">Press</li>
-        <li className="nav-list__item">Thoughts</li>
+        <li className="nav-list__item">
+          <Link className="nav-list__item-link" to="/thoughts">
+            Thoughts
+          </Link>
+        </li>
       </ul>
       <h3 className="nav-item">Contact</h3>
       <h3 className="nav-item">CV</h3>
