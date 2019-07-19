@@ -1,16 +1,10 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import styled from "styled-components"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {
-  faLongArrowAltRight,
-  faLongArrowAltLeft,
-} from "@fortawesome/free-solid-svg-icons"
 
-// import { StyledPost } from "../styles/post.css"
 import Layout from "../components/layout"
-import SEO from "../components/SEO"
+import SEO from "../components/seo"
 
 export const query = graphql`
   query($slug: String!) {
