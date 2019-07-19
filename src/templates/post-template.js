@@ -21,17 +21,31 @@ export const query = graphql`
 const PostTemplate = ({ data, pageContext }) => {
   const { title, previous, next } = pageContext
 
-  // Options to render images in the markdown
+  // Options to render images and videos in the markdown
   const options = {
     renderNode: {
       "embedded-asset-block": node => {
         const alt = node.data.target.fields.title["en-US"]
         const url = node.data.target.fields.file["en-US"].url
-        // const contentType = node.data.target.fields.file[
-        //   "en-US"
-        // ].contentType.split("/")[0]
-        // console.log(contentType)
-        return <img src={url} alt={alt} />
+        const contentType = node.data.target.fields.file[
+          "en-US"
+        ].contentType.split("/")[0]
+
+        if (contentType === "image") {
+          return <img src={url} alt={alt} />
+        } else if (contentType === "video") {
+          return (
+            <video
+              width="100%"
+              max-height="100%"
+              src={url}
+              controls
+              style={{ outline: "0" }}
+            >
+              Your browser does not support embedded videos.
+            </video>
+          )
+        }
       },
     },
   }
@@ -54,15 +68,17 @@ const PostTemplate = ({ data, pageContext }) => {
 }
 
 const PostContainer = styled.div`
-  border: 1px green solid;
-
   > div {
     margin: 0 auto;
   }
 
   .body {
-    border: 1px red solid;
     max-width: 600px;
+  }
+
+  img,
+  video {
+    padding: 1rem 0;
   }
 
   @media screen and (min-width: 960px) {
