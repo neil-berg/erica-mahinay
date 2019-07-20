@@ -88,12 +88,15 @@ const TemplateWrapper = styled.div`
   .header__exhibition-gallery,
   .header__exhibition-location {
     font-size: 1em;
-    font-weight: normal;
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 300;
     padding-bottom: 0.35rem;
   }
 
   .header__exhibition-press-release {
     color: var(--blue);
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 300;
   }
 
   @media screen and (min-width: 960px) {

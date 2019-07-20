@@ -36,6 +36,21 @@ module.exports = {
         logo: `./src/images/e-logo.png`,
       },
     },
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Josefin Sans`,
+            variants: [`100`, `300`, `400`],
+          },
+          {
+            family: `Quattrocento Sans`,
+            variants: [`400`],
+          },
+        ],
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

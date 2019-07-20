@@ -90,7 +90,16 @@ const StyledMenu = styled(animated.nav)`
     justify-content: space-between;
   }
 
+  .nav-list-header__text {
+    //font-family: "Josefin Sans", sans-serif;
+    font-family: "Quattrocento Sans", sans-serif;
+    font-weight: 400;
+  }
+
   .nav-list__item-link {
+    font-family: "Josefin Sans", sans-serif;
+    //font-family: "Quattrocento Sans", sans-serif;
+    font-weight: 300;
     color: inherit;
     text-decoration: none;
     transition: all 0.3s linear;
