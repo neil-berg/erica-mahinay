@@ -110,13 +110,18 @@ const Grid = styled.div`
     writing-mode: vertical-lr;
     justify-self: center;
     //padding: 0 1rem;
-    color: var(--blue);
+    color: var(--gold);
   }
 
   .exhibition-list {
     grid-column: 1 / 3;
     grid-row: 1 / 5;
     align-self: center;
+    border-left: 15px solid var(--pink);
+  }
+  .exhibition-list__item,
+  .exhibition-list__header {
+    padding-left: 0.5rem;
   }
 
   .onview-list {
@@ -140,15 +145,27 @@ const Grid = styled.div`
     text-decoration: none;
   }
 
-  .exhibition-list__header,
+  .exhibition-list__header {
+    color: var(--sand);
+  }
   .onview-list__header {
     color: var(--sand);
   }
-
-  .exhibition-list__item-link,
+  .exhibition-list__item-link {
+    text-decoration: none;
+    color: var(--sand);
+    transition: 0.3s linear;
+  }
   .onview-list__item-link {
     text-decoration: none;
     color: var(--sand);
+  }
+
+  @media (hover: hover) {
+    .exhibition-list__item-link:hover {
+      text-decoration: none;
+      color: var(--blue);
+    }
   }
 
   @media screen and (min-width: 700px) {
