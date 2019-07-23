@@ -55,7 +55,11 @@ const SmallMenu = ({ isMenuOpen, setIsMenuOpen }) => {
         <span className="nav-list-header__text">Writing</span>
       </h3>
       <ul className="nav-list-writing">
-        <li className="nav-list__item">Press</li>
+        <li className="nav-list__item">
+          <Link className="nav-list__item-link" to="/press">
+            Press
+          </Link>
+        </li>
         <li className="nav-list__item">
           <Link className="nav-list__item-link" to="/thoughts">
             Thoughts
