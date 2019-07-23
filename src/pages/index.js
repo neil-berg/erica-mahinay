@@ -4,45 +4,28 @@ import styled from "styled-components"
 
 import SEO from "../components/seo"
 
-export const query = graphql`
-  {
-    allContentfulExhibition(sort: { fields: order, order: DESC }, limit: 5) {
-      nodes {
-        title
-        slug
-        id
-      }
-    }
-    allContentfulOnView(sort: { fields: order, order: DESC }, limit: 2) {
-      nodes {
-        id
-        title
-        link
-      }
-    }
-  }
-`
+import "../components/layout.css"
 
-const IndexPage = ({ data }) => {
+const IndexPage = () => {
   // Retrieve the latest 5 exhibitions and 2 currently on view
-  // const data = useStaticQuery(graphql`
-  //   {
-  //     allContentfulExhibition(sort: { fields: order, order: DESC }, limit: 5) {
-  //       nodes {
-  //         title
-  //         slug
-  //         id
-  //       }
-  //     }
-  //     allContentfulOnView(sort: { fields: order, order: DESC }, limit: 2) {
-  //       nodes {
-  //         id
-  //         title
-  //         link
-  //       }
-  //     }
-  //   }
-  // `)
+  const data = useStaticQuery(graphql`
+    {
+      allContentfulExhibition(sort: { fields: order, order: DESC }, limit: 5) {
+        nodes {
+          title
+          slug
+          id
+        }
+      }
+      allContentfulOnView(sort: { fields: order, order: DESC }, limit: 2) {
+        nodes {
+          id
+          title
+          link
+        }
+      }
+    }
+  `)
 
   const exhibitions = data.allContentfulExhibition.nodes
   const onView = data.allContentfulOnView.nodes
@@ -69,12 +52,6 @@ const IndexPage = ({ data }) => {
   ))
 
   return (
-    // <div>
-    //   <SEO title="Press" />
-    //   <h2>HOME</h2>
-    //   <ul>{onViewListItems}</ul>
-    //   <ul>{exhibitionListItems}</ul>
-    // </div>
     <HomeContainer>
       <SEO title="Home" />
       <Grid>
@@ -177,14 +154,17 @@ const Grid = styled.div`
   .exhibition-list__header {
     color: var(--sand);
   }
+
   .onview-list__header {
     color: var(--sand);
   }
+
   .exhibition-list__item-link {
     text-decoration: none;
     color: var(--sand);
     transition: 0.3s linear;
   }
+
   .onview-list__item-link {
     text-decoration: none;
     color: var(--sand);
@@ -219,6 +199,7 @@ const Grid = styled.div`
       align-self: center;
       border-left: 15px solid var(--pink);
     }
+
     .exhibition-list__item,
     .exhibition-list__header {
       padding-left: 0.5rem;
