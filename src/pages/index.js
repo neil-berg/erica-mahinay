@@ -4,26 +4,45 @@ import styled from "styled-components"
 
 import SEO from "../components/seo"
 
-const IndexPage = () => {
-  // Retrieve the latest 5 exhibitions and 2 currently on view
-  const data = useStaticQuery(graphql`
-    {
-      allContentfulExhibition(sort: { fields: order, order: DESC }, limit: 5) {
-        nodes {
-          title
-          slug
-          id
-        }
-      }
-      allContentfulOnView(sort: { fields: order, order: DESC }, limit: 2) {
-        nodes {
-          id
-          title
-          link
-        }
+export const query = graphql`
+  {
+    allContentfulExhibition(sort: { fields: order, order: DESC }, limit: 5) {
+      nodes {
+        title
+        slug
+        id
       }
     }
-  `)
+    allContentfulOnView(sort: { fields: order, order: DESC }, limit: 2) {
+      nodes {
+        id
+        title
+        link
+      }
+    }
+  }
+`
+
+const IndexPage = ({ data }) => {
+  // Retrieve the latest 5 exhibitions and 2 currently on view
+  // const data = useStaticQuery(graphql`
+  //   {
+  //     allContentfulExhibition(sort: { fields: order, order: DESC }, limit: 5) {
+  //       nodes {
+  //         title
+  //         slug
+  //         id
+  //       }
+  //     }
+  //     allContentfulOnView(sort: { fields: order, order: DESC }, limit: 2) {
+  //       nodes {
+  //         id
+  //         title
+  //         link
+  //       }
+  //     }
+  //   }
+  // `)
 
   const exhibitions = data.allContentfulExhibition.nodes
   const onView = data.allContentfulOnView.nodes
@@ -50,6 +69,12 @@ const IndexPage = () => {
   ))
 
   return (
+    // <div>
+    //   <SEO title="Press" />
+    //   <h2>HOME</h2>
+    //   <ul>{onViewListItems}</ul>
+    //   <ul>{exhibitionListItems}</ul>
+    // </div>
     <HomeContainer>
       <SEO title="Home" />
       <Grid>
