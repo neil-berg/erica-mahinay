@@ -92,50 +92,54 @@ const IndexPage = () => {
 const HomeContainer = styled.div`
   min-height: 100vh;
   display: flex;
-  padding: 3rem;
+  padding: 2rem;
   background: var(--white);
+
+  @media screen and (min-width: 700px) {
+    padding: 3rem;
+  }
 `
 
 const Grid = styled.div`
-  width: 66vw;
-  margin: auto;
+  width: 100vw;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 0.75fr 1fr 1fr 0.5fr 1fr;
-  grid-template-rows: auto 1fr auto auto 0.5fr;
+  grid-template-columns: 4fr 1fr;
+  grid-template-rows: repeat(3, min-content);
   grid-gap: 1rem;
 
   .name {
-    grid-column: 3 / 4;
-    grid-row: 3 / 5;
+    grid-column: 2;
+    grid-row: 1 / 3;
     writing-mode: vertical-lr;
-    justify-self: center;
-    //padding: 0 1rem;
+    justify-self: end;
     color: var(--gold);
   }
 
   .exhibition-list {
-    grid-column: 1 / 3;
-    grid-row: 1 / 5;
-    align-self: center;
-    border-left: 15px solid var(--pink);
+    grid-column: 1;
+    grid-row: 2;
   }
-  .exhibition-list__item,
-  .exhibition-list__header {
+
+  .onview-list__item,
+  .onview-list__header {
     padding-left: 0.5rem;
   }
 
   .onview-list {
-    grid-column: 4 / 7;
-    grid-row: 2;
+    grid-column: 1;
+    grid-row: 1;
     align-self: end;
+    border-left: 15px solid var(--pink);
   }
 
   .contact {
-    grid-column: 4 / 7;
-    grid-row: 5;
-    align-self: end;
-    // justify-self: end;
-    border-bottom: 25px solid var(--pink);
+    grid-column: 1 / 3;
+    grid-row: 3;
+    justify-self: end;
+    text-align: right;
+    margin-right: 1rem;
+    border-bottom: 15px solid var(--pink);
   }
 
   .instagram,
@@ -170,6 +174,44 @@ const Grid = styled.div`
 
   @media screen and (min-width: 700px) {
     transform: rotate(-45deg);
+    width: 66vw;
+    margin: auto;
+    grid-template-columns: 1fr 0.75fr 1fr 1fr 0.5fr 1fr;
+    grid-template-rows: auto 1fr auto auto 0.5fr;
+
+    .name {
+      grid-column: 3 / 4;
+      grid-row: 3 / 5;
+      writing-mode: vertical-lr;
+      justify-self: center;
+      //padding: 0 1rem;
+      color: var(--gold);
+    }
+
+    .exhibition-list {
+      grid-column: 1 / 3;
+      grid-row: 1 / 5;
+      align-self: center;
+      border-left: 15px solid var(--pink);
+    }
+    .exhibition-list__item,
+    .exhibition-list__header {
+      padding-left: 0.5rem;
+    }
+
+    .onview-list {
+      grid-column: 4 / 7;
+      grid-row: 2;
+      align-self: end;
+    }
+
+    .contact {
+      grid-column: 4 / 7;
+      grid-row: 5;
+      align-self: end;
+      // justify-self: end;
+      border-bottom: 25px solid var(--pink);
+    }
   }
 `
 
