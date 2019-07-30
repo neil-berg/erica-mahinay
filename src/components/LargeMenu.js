@@ -18,7 +18,7 @@ const LargeMenu = () => {
     </li>
   ))
 
-  const renderonViewTitles = onview.map(item => (
+  const renderOnViewTitles = onview.map(item => (
     <li className="nav-list__item" key={item.id}>
       <a
         className="nav-list__item-link"
@@ -33,10 +33,19 @@ const LargeMenu = () => {
 
   return (
     <StyledMenu>
-      <h3 className="nav-list-header">
-        <span className="nav-list-header__text">On View</span>
-      </h3>
-      {onview && <ul className="nav-list-on-view">{renderonViewTitles}</ul>}
+      <h2 className="nav__header">
+        <Link className="nav__header-link" to="/">
+          Erica Mahinay
+        </Link>
+      </h2>
+      {onview && (
+        <>
+          <h3 className="nav-list-header">
+            <span className="nav-list-header__text">On View</span>
+          </h3>
+          <ul className="nav-list-on-view">{renderOnViewTitles}</ul>
+        </>
+      )}
       <h3 className="nav-list-header">
         <span className="nav-list-header__text">Exhibitions</span>
       </h3>
@@ -67,7 +76,7 @@ const LargeMenu = () => {
 
 const StyledMenu = styled.nav`
   position: fixed;
-  top: 100px;
+  top: 0;
   left: 0;
   height: 100vh;
   width: 300px;
@@ -75,7 +84,23 @@ const StyledMenu = styled.nav`
   color: var(--sand);
   z-index: 2;
   padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   overflow: scroll;
+
+  .nav__header {
+    font-size: 1.2em;
+    padding: 3rem 0;
+    transform: rotate(-15deg);
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .nav__header-link {
+    color: inherit;
+    text-decoration: none;
+  }
 
   .nav-list-on-view,
   .nav-list-exhibitions,
@@ -86,7 +111,6 @@ const StyledMenu = styled.nav`
   }
 
   .nav-list__item {
-    //padding: 0 2.25em;
     padding-bottom: 0.75em;
     font-size: 0.95em;
     font-weight: 200;

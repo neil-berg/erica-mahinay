@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link } from "gatsby"
 import { useSpring, animated } from "react-spring"
 import styled from "styled-components"
@@ -6,22 +6,9 @@ import styled from "styled-components"
 import { useExhibitions } from "../hooks/useExhibitions"
 import { useOnView } from "../hooks/useOnView"
 
-const SmallMenu = ({ isMenuOpen, setIsMenuOpen }) => {
-  // Retrieve exhibition titles from CMS and create a list of them
-  const exhibitions = useExhibitions()
-  const onview = useOnView()
-
-  const renderExhibitionTitles = exhibitions.map(item => (
-    <li
-      className="nav-list__item"
-      key={item.id}
-      // onClick={() => handleCloseClick()}
-    >
-      <Link className="nav-list__item-link" to={`/${item.slug}`}>
-        {item.title}
-      </Link>
-    </li>
-  ))
+const SmallMenu = () => {
+  // Track status of menu open/close for spring animation
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   // Setup the zoom-in animation for the menu reveal on small screens
   const animation = useSpring({
@@ -30,89 +17,187 @@ const SmallMenu = ({ isMenuOpen, setIsMenuOpen }) => {
       : `translate3d(-100%,0,0) scale(0.6)`,
   })
 
+  // Retrieve on view and exhibition titles from Contenful and generate lists
+  const exhibitions = useExhibitions()
+  const onview = useOnView()
+
+  const renderExhibitionTitles = exhibitions.map(item => (
+    <li className="nav-list__item" key={item.id}>
+      <Link className="nav-list__item-link" to={`/${item.slug}`}>
+        {item.title}
+      </Link>
+    </li>
+  ))
+
+  const renderOnViewTitles = onview.map(item => (
+    <li className="nav-list__item" key={item.id}>
+      <a
+        className="nav-list__item-link"
+        href={item.link}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {item.title}
+      </a>
+    </li>
+  ))
+
   return (
-    <StyledMenu
-      style={animation}
-      onClick={e => {
-        const className = e.target.className
-        if (
-          className === "nav-list__item" ||
-          className === "nav-list__item-link"
-        ) {
-          setIsMenuOpen(false)
-        }
-      }}
-    >
-      <h3 className="nav-list-header">
-        <span className="nav-list-header__text">On Display</span>
-      </h3>
-      <ul className="nav-list-on-display">
-        <li className="nav-list__item">Euclid</li>
-        <li className="nav-list__item">Touch Knows Before Language</li>
-      </ul>
-      <h3 className="nav-list-header">
-        <span className="nav-list-header__text">Exhibitions</span>
-      </h3>
-      <ul className="nav-list-exhibitions">{renderExhibitionTitles}</ul>
-      <h3 className="nav-list-header">
-        <span className="nav-list-header__text">Writing</span>
-      </h3>
-      <ul className="nav-list-writing">
-        <li className="nav-list__item">
-          <Link className="nav-list__item-link" to="/press">
-            Press
+    <div>
+      <MenuHeader isMenuOpen={isMenuOpen}>
+        <button
+          className="header__button"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          {isMenuOpen ? "Close" : "Menu"}
+        </button>
+        <h2 className="header__text">
+          <Link className="header__text-link" to="/">
+            Erica Mahinay
           </Link>
-        </li>
-        <li className="nav-list__item">
-          <Link className="nav-list__item-link" to="/thoughts">
-            Thoughts
-          </Link>
-        </li>
-      </ul>
-      <h3 className="nav-item">Contact</h3>
-      <h3 className="nav-item">CV</h3>
-    </StyledMenu>
+        </h2>
+      </MenuHeader>
+      <StyledMenu
+        style={animation}
+        onClick={e => {
+          const className = e.target.className
+          if (
+            className === "nav-list__item" ||
+            className === "nav-list__item-link"
+          ) {
+            setIsMenuOpen(false)
+          }
+        }}
+      >
+        {onview && (
+          <>
+            <h3 className="nav-list-header">
+              <span className="nav-list-header__text">On View</span>
+            </h3>
+            <ul className="nav-list-on-view">{renderOnViewTitles}</ul>
+          </>
+        )}
+        <h3 className="nav-list-header">
+          <span className="nav-list-header__text">Exhibitions</span>
+        </h3>
+        <ul className="nav-list-exhibitions">{renderExhibitionTitles}</ul>
+        <h3 className="nav-list-header">
+          <span className="nav-list-header__text">Writing</span>
+        </h3>
+        <ul className="nav-list-writing">
+          <li className="nav-list__item">
+            <Link className="nav-list__item-link" to="/press">
+              Press
+            </Link>
+          </li>
+          <li className="nav-list__item">
+            <Link className="nav-list__item-link" to="/thoughts">
+              Thoughts
+            </Link>
+          </li>
+        </ul>
+        <h3 className="nav-list-header">Information</h3>
+        <ul className="nav-list-information">
+          <li className="nav-list__item">Contact</li>
+          <li className="nav-list__item">CV</li>
+        </ul>
+      </StyledMenu>
+    </div>
   )
 }
 
+const MenuHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  max-width: 600px;
+  margin: 0 auto;
+
+  .header__text {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+  }
+
+  .header__text-link {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .header__button {
+    color: ${props => (props.isMenuOpen ? "var(--sand)" : "var(--blue)")};
+    background: transparent;
+    outline: 0;
+    border: 0;
+    z-index: 4;
+    transition: color 0.4s ease-in;
+  }
+
+  @media screen and (max-width: 600px) {
+    padding: 1rem 1rem;
+  }
+
+  @media screen and (min-width: 960px) {
+    display: none;
+  }
+`
+
 const StyledMenu = styled(animated.nav)`
   position: fixed;
-  top: 50px;
+  top: 0;
   left: 0;
-  height: calc(100vh - 50px);
+  height: 100vh;
   width: 100vw;
   background: var(--blue);
   color: var(--sand);
   z-index: 2;
+  padding: 0 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   overflow-y: scroll;
 
-  h3,
-  ul > li {
+  .nav-list-on-view,
+  .nav-list-exhibitions,
+  .nav-list-writing,
+  .nav-list-information {
+    margin-bottom: 1rem;
     transform: rotate(-15deg);
   }
 
-  .nav-list-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  .nav-list__item {
+    //padding: 0 2.25em;
+    padding-bottom: 0.75em;
+    font-size: 1em;
+    font-weight: 200;
+    line-height: 1em;
+    text-align: center;
   }
 
-  .nav-list-header__text {
-    //font-family: "Josefin Sans", sans-serif;
-    font-family: "Quattrocento Sans", sans-serif;
-    font-weight: 400;
+  .nav-list__item:first-child {
+    padding-top: 0.5em;
+  }
+
+  .nav-list-header {
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 1.15em;
+    transform: rotate(-15deg);
+    text-align: center;
+    border-bottom: 1px var(--sand) solid;
+    padding-bottom: 0.1em;
   }
 
   .nav-list__item-link {
-    font-family: "Josefin Sans", sans-serif;
-    //font-family: "Quattrocento Sans", sans-serif;
-    font-weight: 300;
     color: inherit;
     text-decoration: none;
     transition: all 0.3s linear;
+    padding: 0;
   }
-
-  .nav-list__item-link:active {
+  .nav-list__item-link:active,
+  .nav-list__item-link:hover {
     outline-width: 0;
     color: var(--pink);
   }
@@ -124,7 +209,7 @@ const StyledMenu = styled(animated.nav)`
   }
 
   @media screen and (min-width: 960px) {
-    width: 250px;
+    display: none;
   }
 `
 

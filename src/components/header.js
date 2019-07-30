@@ -51,7 +51,7 @@ const StyledHeader = styled.header`
   padding: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   z-index: 2;
 
   .header__icon {
@@ -68,10 +68,12 @@ const StyledHeader = styled.header`
   }
 
   .header__text-link {
-    font-size: 1.5rem;
+    font-size: 1rem;
+    font-weight: 400;
     color: var(--sand);
     text-decoration: none;
     transition: 0.3s;
+    padding-right: 1rem;
   }
 
   .header__text-link:active {
@@ -87,11 +89,17 @@ const StyledHeader = styled.header`
   @media screen and (min-width: 960px) {
     width: 300px;
     height: 100px;
+    justify-content: center;
+
     .header__icon {
       display: none;
     }
     .header__text {
       transform: rotate(-15deg);
+    }
+    .header__text-link {
+      font-size: 1.35rem;
+      text-transform: uppercase;
     }
   }
 `
