@@ -41,12 +41,12 @@ module.exports = {
       options: {
         fonts: [
           {
-            family: `Josefin Sans`,
-            variants: [`100`, `300`, `400`],
+            family: `Barlow`,
+            variants: [`100`, `200`, `400`],
           },
           {
-            family: `Quattrocento Sans`,
-            variants: [`400`],
+            family: `Muli`,
+            variants: [`200`, `400`],
           },
         ],
       },

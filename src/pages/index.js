@@ -24,26 +24,6 @@ export const query = graphql`
 `
 
 const IndexPage = ({ data }) => {
-  // Retrieve the latest 5 exhibitions and 2 currently on view
-  // const data = useStaticQuery(graphql`
-  //   {
-  //     allContentfulExhibition(sort: { fields: order, order: DESC }, limit: 5) {
-  //       nodes {
-  //         title
-  //         slug
-  //         id
-  //       }
-  //     }
-  //     allContentfulOnView(sort: { fields: order, order: DESC }, limit: 2) {
-  //       nodes {
-  //         id
-  //         title
-  //         link
-  //       }
-  //     }
-  //   }
-  // `)
-
   const exhibitions = data.allContentfulExhibition.nodes
   const onView = data.allContentfulOnView.nodes
 
@@ -139,6 +119,7 @@ const Grid = styled.div`
     writing-mode: vertical-lr;
     justify-self: end;
     color: var(--gold);
+    text-transform: uppercase;
   }
 
   .exhibition-list {
@@ -176,10 +157,14 @@ const Grid = styled.div`
 
   .exhibition-list__header {
     color: var(--sand);
+    text-transform: uppercase;
   }
+
   .onview-list__header {
     color: var(--sand);
+    text-transform: uppercase;
   }
+
   .exhibition-list__item-link {
     text-decoration: none;
     color: var(--sand);
@@ -235,7 +220,7 @@ const Grid = styled.div`
       grid-row: 5;
       align-self: end;
       // justify-self: end;
-      border-bottom: 25px solid var(--pink);
+      border-bottom: 15px solid var(--pink);
     }
   }
 `
