@@ -4,10 +4,13 @@ import { useSpring, animated } from "react-spring"
 import styled from "styled-components"
 
 import { useExhibitions } from "../hooks/useExhibitions"
+import { useOnView } from "../hooks/useOnView"
 
 const SmallMenu = ({ isMenuOpen, setIsMenuOpen }) => {
   // Retrieve exhibition titles from CMS and create a list of them
   const exhibitions = useExhibitions()
+  const onview = useOnView()
+
   const renderExhibitionTitles = exhibitions.map(item => (
     <li
       className="nav-list__item"

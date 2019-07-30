@@ -3,10 +3,13 @@ import { Link } from "gatsby"
 import styled from "styled-components"
 
 import { useExhibitions } from "../hooks/useExhibitions"
+import { useOnView } from "../hooks/useOnView"
 
 const LargeMenu = () => {
-  // Retrieve exhibition titles from CMS and create a list of them
+  // Retrieve on view and exhibition titles from Contenful and generate lists
   const exhibitions = useExhibitions()
+  const onview = useOnView()
+
   const renderExhibitionTitles = exhibitions.map(item => (
     <li className="nav-list__item" key={item.id}>
       <Link className="nav-list__item-link" to={`/${item.slug}`}>
@@ -15,15 +18,25 @@ const LargeMenu = () => {
     </li>
   ))
 
+  const renderonViewTitles = onview.map(item => (
+    <li className="nav-list__item" key={item.id}>
+      <a
+        className="nav-list__item-link"
+        href={item.link}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {item.title}
+      </a>
+    </li>
+  ))
+
   return (
     <StyledMenu>
       <h3 className="nav-list-header">
-        <span className="nav-list-header__text">On Display</span>
+        <span className="nav-list-header__text">On View</span>
       </h3>
-      <ul className="nav-list-on-display">
-        <li className="nav-list__item">Euclid</li>
-        <li className="nav-list__item">Touch Knows Before Language</li>
-      </ul>
+      {onview && <ul className="nav-list-on-view">{renderonViewTitles}</ul>}
       <h3 className="nav-list-header">
         <span className="nav-list-header__text">Exhibitions</span>
       </h3>
@@ -43,8 +56,11 @@ const LargeMenu = () => {
           </Link>
         </li>
       </ul>
-      <h3 className="nav-item">Contact</h3>
-      <h3 className="nav-item">CV</h3>
+      <h3 className="nav-list-header">Information</h3>
+      <ul className="nav-list-information">
+        <li className="nav-list__item">Contact</li>
+        <li className="nav-list__item">CV</li>
+      </ul>
     </StyledMenu>
   )
 }
@@ -58,27 +74,45 @@ const StyledMenu = styled.nav`
   background: var(--blue);
   color: var(--sand);
   z-index: 2;
-  padding: 0 0.5rem;
+  padding: 1rem 1.5rem;
+  overflow: scroll;
 
-  h3,
-  ul {
+  .nav-list-on-view,
+  .nav-list-exhibitions,
+  .nav-list-writing,
+  .nav-list-information {
+    margin-bottom: 1rem;
     transform: rotate(-15deg);
   }
 
   .nav-list__item {
-    padding-left: 1.75rem;
+    //padding: 0 2.25em;
+    padding-bottom: 0.75em;
+    font-size: 0.95em;
+    font-weight: 200;
+    line-height: 1em;
+    text-align: center;
+  }
+
+  .nav-list__item:first-child {
+    padding-top: 0.5em;
   }
 
   .nav-list-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 1.15em;
+    transform: rotate(-15deg);
+    text-align: center;
+    border-bottom: 1px var(--sand) solid;
+    padding-bottom: 0.1em;
   }
 
   .nav-list__item-link {
     color: inherit;
     text-decoration: none;
     transition: all 0.3s linear;
+    padding: 0;
   }
   .nav-list__item-link:active,
   .nav-list__item-link:hover {
