@@ -63,19 +63,24 @@ const Press = () => {
 }
 
 const PressContainer = styled.section`
-  min-height: calc(100vh - 100px);
+  min-height: 90vh;
   padding: 1rem;
-  margin-top: 50px;
+  margin-top: 2rem;
 
   .press-header {
     max-width: 600px;
     margin: 0 auto;
     padding-bottom: 1rem;
+    font-size: 1.75em;
   }
 
   .press-list {
     max-width: 600px;
     margin: 0 auto;
+  }
+
+  .press-list__item {
+    padding-bottom: 1rem;
   }
 
   .press-list__item-link {

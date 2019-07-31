@@ -49,12 +49,6 @@ const IndexPage = ({ data }) => {
   ))
 
   return (
-    // <div>
-    //   <SEO title="Press" />
-    //   <h2>HOME</h2>
-    //   <ul>{onViewListItems}</ul>
-    //   <ul>{exhibitionListItems}</ul>
-    // </div>
     <HomeContainer>
       <SEO title="Home" />
       <Grid>
@@ -65,12 +59,15 @@ const IndexPage = ({ data }) => {
             {exhibitionListItems}
           </ul>
         </div>
-        <div className="onview-list">
-          <ul>
-            <h2 className="onview-list__header">On View</h2>
-            {onViewListItems}
-          </ul>
-        </div>
+        {onView && (
+          <div className="onview-list">
+            <ul>
+              <h2 className="onview-list__header">On View</h2>
+              {onViewListItems}
+            </ul>
+          </div>
+        )}
+
         <div className="contact">
           <a
             className="instagram"
@@ -155,27 +152,28 @@ const Grid = styled.div`
     text-decoration: none;
   }
 
+  .onview-list__header,
   .exhibition-list__header {
     color: var(--sand);
     text-transform: uppercase;
+    padding-bottom: 0.5rem;
   }
 
-  .onview-list__header {
-    color: var(--sand);
-    text-transform: uppercase;
+  .onview-list__item:not(:last-child),
+  .exhibition-list__item:not(:last-child) {
+    line-height: 1em;
+    padding-bottom: 1em;
   }
 
+  .onview-list__item-link,
   .exhibition-list__item-link {
     text-decoration: none;
     color: var(--sand);
     transition: 0.3s linear;
   }
-  .onview-list__item-link {
-    text-decoration: none;
-    color: var(--sand);
-  }
 
   @media (hover: hover) {
+    .onview-list__item-link:hover,
     .exhibition-list__item-link:hover {
       text-decoration: none;
       color: var(--blue);

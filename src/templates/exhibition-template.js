@@ -70,16 +70,15 @@ const TemplateWrapper = styled.div`
   .header,
   .exhibition__images {
     max-width: 600px;
-    margin: 0 auto;
+    margin: 2rem auto;
   }
 
   .header {
-    margin-top: 50px;
     color: var(--gold);
   }
 
   .header__exhibition-title {
-    font-size: 2em;
+    font-size: 1.75em;
     margin-bottom: 1rem;
   }
 
@@ -92,8 +91,9 @@ const TemplateWrapper = styled.div`
   }
 
   .header__exhibition-press-release {
-    color: var(--blue);
-    font-weight: 300;
+    color: var(--gold);
+    font-weight: 400;
+    text-decoration: none;
   }
 
   @media screen and (max-width: 600px) {

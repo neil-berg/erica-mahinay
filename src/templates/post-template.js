@@ -68,12 +68,13 @@ const PostTemplate = ({ data, pageContext }) => {
 }
 
 const PostContainer = styled.div`
-  > div {
-    margin: 0 auto;
-  }
+  // > div {
+  //   margin: 0 auto;
+  // }
 
   .body {
     max-width: 600px;
+    margin: 0 auto;
   }
 
   img,
@@ -81,8 +82,16 @@ const PostContainer = styled.div`
     padding: 1rem 0;
   }
 
+  @media screen and (max-width: 600px) {
+    padding: 1rem;
+  }
+
   @media screen and (min-width: 960px) {
     margin-left: 300px;
+
+    .body {
+      padding-top: 2rem;
+    }
   }
 `
 

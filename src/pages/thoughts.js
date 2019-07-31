@@ -41,7 +41,7 @@ const Thoughts = () => {
 }
 
 const ThoughtsContainer = styled.div`
-  margin-top: 50px;
+  min-height: 80vh;
 
   .post-list {
     padding: 1rem;
@@ -69,9 +69,16 @@ const ThoughtsContainer = styled.div`
     color: var(--blue);
   }
 
+  @media screen and (min-width: 600px) {
+    .post-list {
+      padding: 1rem 0;
+    }
+  }
+
   @media screen and (min-width: 960px) {
     margin-left: 300px;
     margin-top: 0px;
+    min-height: 90vh;
   }
 `
 
