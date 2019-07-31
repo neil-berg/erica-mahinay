@@ -21,18 +21,21 @@ const ImageCardWrapper = styled.div`
 
   .card__details {
     color: var(--gold);
+    padding-top: 0.5rem;
   }
 
   .details__year,
   .details__materials,
   .details__dimensions {
-    font-weight: normal;
-    font-size: 1em;
+    font-weight: 300;
+    font-size: 0.8em;
     padding-top: 0.35rem;
+    line-height: 1em;
   }
 
   .details__title {
-    font-size: 1em;
+    font-size: 0.9em;
+    font-weight: 400;
     font-style: italic;
   }
 

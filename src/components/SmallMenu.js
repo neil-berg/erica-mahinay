@@ -129,10 +129,12 @@ const MenuHeader = styled.div`
   .header__button {
     color: ${props => (props.isMenuOpen ? "var(--sand)" : "var(--blue)")};
     background: transparent;
+    padding: 0;
     outline: 0;
     border: 0;
     z-index: 4;
     transition: color 0.4s ease-in;
+    cursor: pointer;
   }
 
   @media screen and (max-width: 600px) {
