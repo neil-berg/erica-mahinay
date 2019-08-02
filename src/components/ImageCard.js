@@ -20,8 +20,9 @@ const ImageCardWrapper = styled.div`
   margin-bottom: 4rem;
 
   .card__details {
-    color: var(--gold);
+    color: var(--sand);
     padding-top: 0.5rem;
+    transition: 0.3s linear;
   }
 
   .details__year,
@@ -41,7 +42,8 @@ const ImageCardWrapper = styled.div`
 
   @media (hover: hover) {
     :hover .card__details {
-      color: var(--blue);
+      color: var(--gold);
+      font-weight: 400;
     }
   }
 `

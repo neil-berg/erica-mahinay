@@ -80,8 +80,8 @@ const StyledMenu = styled.nav`
   left: 0;
   height: 100vh;
   width: 300px;
-  background: var(--blue);
-  color: var(--sand);
+  background: var(--white);
+  color: var(--gold);
   z-index: 2;
   padding: 1rem 1.5rem;
   display: flex;
@@ -92,7 +92,7 @@ const StyledMenu = styled.nav`
   .nav__header {
     font-size: 1.2em;
     padding: 3rem 0;
-    transform: rotate(-15deg);
+    // transform: rotate(-15deg);
     text-align: center;
     text-transform: uppercase;
   }
@@ -107,13 +107,13 @@ const StyledMenu = styled.nav`
   .nav-list-writing,
   .nav-list-information {
     margin-bottom: 1rem;
-    transform: rotate(-15deg);
+    // transform: rotate(-15deg);
   }
 
   .nav-list__item {
     padding-bottom: 0.75em;
     font-size: 0.95em;
-    font-weight: 200;
+    font-weight: 300;
     line-height: 1em;
     text-align: center;
   }
@@ -126,7 +126,7 @@ const StyledMenu = styled.nav`
     text-transform: uppercase;
     font-weight: normal;
     font-size: 1.15em;
-    transform: rotate(-15deg);
+    // transform: rotate(-15deg);
     text-align: center;
     border-bottom: 1px var(--sand) solid;
     padding-bottom: 0.1em;
@@ -135,13 +135,14 @@ const StyledMenu = styled.nav`
   .nav-list__item-link {
     color: inherit;
     text-decoration: none;
-    transition: all 0.3s linear;
+    transition: 0.3s linear;
     padding: 0;
   }
   .nav-list__item-link:active,
   .nav-list__item-link:hover {
     outline-width: 0;
     color: var(--pink);
+    font-weight: 400;
   }
 
   @media screen and (max-width: 959px) {

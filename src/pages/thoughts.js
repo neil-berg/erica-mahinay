@@ -61,12 +61,13 @@ const ThoughtsContainer = styled.div`
   .post__date {
     font-size: 1em;
     padding: 1rem 0;
-    color: var(--gold);
+    color: var(--sand);
+    font-weight: 400;
   }
 
   .post__title {
     font-size: 2em;
-    color: var(--blue);
+    color: var(--gold);
   }
 
   @media screen and (min-width: 600px) {
