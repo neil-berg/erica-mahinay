@@ -118,6 +118,7 @@ const MenuHeader = styled.div`
   .header__text {
     font-size: 0.9rem;
     text-transform: uppercase;
+    color: var(--gold);
   }
 
   .header__text-link {
@@ -127,7 +128,7 @@ const MenuHeader = styled.div`
   }
 
   .header__button {
-    color: ${props => (props.isMenuOpen ? "var(--sand)" : "var(--blue)")};
+    color: ${props => (props.isMenuOpen ? "var(--sand)" : "var(--gold)")};
     background: transparent;
     padding: 0;
     outline: 0;
@@ -152,7 +153,7 @@ const StyledMenu = styled(animated.nav)`
   left: 0;
   height: 100vh;
   width: 100vw;
-  background: var(--blue);
+  background: var(--white);
   color: var(--sand);
   z-index: 2;
   padding: 0 3rem;
@@ -166,16 +167,16 @@ const StyledMenu = styled(animated.nav)`
   .nav-list-writing,
   .nav-list-information {
     margin-bottom: 1rem;
-    transform: rotate(-15deg);
+    // transform: rotate(-15deg);
   }
 
   .nav-list__item {
-    //padding: 0 2.25em;
     padding-bottom: 0.75em;
     font-size: 1em;
-    font-weight: 200;
+    font-weight: 300;
     line-height: 1em;
     text-align: center;
+    color: var(--gold);
   }
 
   .nav-list__item:first-child {
@@ -186,10 +187,11 @@ const StyledMenu = styled(animated.nav)`
     text-transform: uppercase;
     font-weight: normal;
     font-size: 1.15em;
-    transform: rotate(-15deg);
+    // transform: rotate(-15deg);
     text-align: center;
     border-bottom: 1px var(--sand) solid;
     padding-bottom: 0.1em;
+    color: var(--gold);
   }
 
   .nav-list__item-link {

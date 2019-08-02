@@ -10,14 +10,14 @@ const IndexPage = () => {
   // Retrieve the latest 5 exhibitions and 2 currently on view
   const data = useStaticQuery(graphql`
     {
-      allContentfulExhibition(sort: { fields: order, order: DESC }, limit: 5) {
+      allContentfulExhibition(sort: { fields: order, order: DESC }, limit: 7) {
         nodes {
           title
           slug
           id
         }
       }
-      allContentfulOnView(sort: { fields: order, order: DESC }, limit: 2) {
+      allContentfulOnView(sort: { fields: order, order: DESC }, limit: 4) {
         nodes {
           id
           title
@@ -162,9 +162,13 @@ const Grid = styled.div`
     padding-bottom: 0.5rem;
   }
 
+  .onview-list__item,
+  .exhibition-list__item {
+    line-height: 1em;
+  }
+
   .onview-list__item:not(:last-child),
   .exhibition-list__item:not(:last-child) {
-    line-height: 1em;
     padding-bottom: 1em;
   }
 

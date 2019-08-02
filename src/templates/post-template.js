@@ -68,13 +68,10 @@ const PostTemplate = ({ data, pageContext }) => {
 }
 
 const PostContainer = styled.div`
-  // > div {
-  //   margin: 0 auto;
-  // }
-
   .body {
     max-width: 600px;
     margin: 0 auto;
+    color: var(--gold);
   }
 
   img,

@@ -94,6 +94,13 @@ const TemplateWrapper = styled.div`
     color: var(--gold);
     font-weight: 400;
     text-decoration: none;
+    transition: 0.3s linear;
+  }
+
+  @media (hover: hover) {
+    .header__exhibition-press-release:hover {
+      color: var(--pink);
+    }
   }
 
   @media screen and (max-width: 600px) {

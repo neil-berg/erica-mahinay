@@ -72,6 +72,7 @@ const PressContainer = styled.section`
     margin: 0 auto;
     padding-bottom: 1rem;
     font-size: 1.75em;
+    color: var(--gold);
   }
 
   .press-list {
@@ -84,13 +85,13 @@ const PressContainer = styled.section`
   }
 
   .press-list__item-link {
-    color: var(--blue);
+    color: var(--gold);
     text-decoration: none;
   }
 
   @media screen and (min-width: 960px) {
     margin-left: 300px;
-    margin-top: 0px;
+    margin-top: 2rem;
   }
 `
 
