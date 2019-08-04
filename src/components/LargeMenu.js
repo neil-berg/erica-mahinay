@@ -3,12 +3,10 @@ import { Link } from "gatsby"
 import styled from "styled-components"
 
 import { useExhibitions } from "../hooks/useExhibitions"
-import { useOnView } from "../hooks/useOnView"
 
 const LargeMenu = () => {
-  // Retrieve on view and exhibition titles from Contenful and generate lists
-  const exhibitions = useExhibitions()
-  const onview = useOnView()
+  // Retrieve exhibition titles from Contentful and generate lists
+  const { onView, exhibitions } = useExhibitions()
 
   const renderExhibitionTitles = exhibitions.map(item => (
     <li className="nav-list__item" key={item.id}>
@@ -18,16 +16,11 @@ const LargeMenu = () => {
     </li>
   ))
 
-  const renderOnViewTitles = onview.map(item => (
+  const renderOnViewTitles = onView.map(item => (
     <li className="nav-list__item" key={item.id}>
-      <a
-        className="nav-list__item-link"
-        href={item.link}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <Link className="nav-list__item-link" to={`/${item.slug}`}>
         {item.title}
-      </a>
+      </Link>
     </li>
   ))
 
@@ -38,7 +31,7 @@ const LargeMenu = () => {
           Erica Mahinay
         </Link>
       </h2>
-      {onview && (
+      {onView && (
         <>
           <h3 className="nav-list-header">
             <span className="nav-list-header__text">On View</span>
