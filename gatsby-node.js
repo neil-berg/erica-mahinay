@@ -36,6 +36,11 @@ exports.createPages = async ({ actions, graphql }) => {
 
     const next = index === 0 ? null : exhibitions[index - 1]
 
+    let pressRelease
+    if (exhibition.pressRelease && exhibition.pressRelease.file) {
+      pressRelease = exhibition.pressRelease.file.url
+    }
+
     actions.createPage({
       path: exhibition.slug,
       component: path.resolve(`./src/templates/exhibition-template.js`),
@@ -45,7 +50,7 @@ exports.createPages = async ({ actions, graphql }) => {
         location: exhibition.location,
         date: exhibition.date,
         gallery: exhibition.gallery,
-        pressRelease: exhibition.pressRelease.file.url,
+        pressRelease,
         previous,
         next,
       },

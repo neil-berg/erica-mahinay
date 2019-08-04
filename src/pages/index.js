@@ -3,51 +3,27 @@ import { Link, graphql, useStaticQuery } from "gatsby"
 import styled from "styled-components"
 
 import SEO from "../components/seo"
+import { useExhibitions } from "../hooks/useExhibitions"
 
 import "../components/layout.css"
 
 const IndexPage = () => {
-  // Retrieve the latest 5 exhibitions and 2 currently on view
-  const data = useStaticQuery(graphql`
-    {
-      allContentfulExhibition(sort: { fields: order, order: DESC }, limit: 7) {
-        nodes {
-          title
-          slug
-          id
-        }
-      }
-      allContentfulOnView(sort: { fields: order, order: DESC }, limit: 4) {
-        nodes {
-          id
-          title
-          link
-        }
-      }
-    }
-  `)
+  // Retrieve all exhibitions from Contentful
+  const { onView, exhibitions } = useExhibitions()
 
-  const exhibitions = data.allContentfulExhibition.nodes
-  const onView = data.allContentfulOnView.nodes
+  const onViewListItems = onView.map(onView => (
+    <li className="onview-list__item" key={onView.id}>
+      <Link className="onview-list__item-link" to={`/${onView.slug}`}>
+        {onView.title}
+      </Link>
+    </li>
+  ))
 
   const exhibitionListItems = exhibitions.map(exhibition => (
     <li className="exhibition-list__item" key={exhibition.id}>
       <Link className="exhibition-list__item-link" to={`/${exhibition.slug}`}>
         {exhibition.title}
       </Link>
-    </li>
-  ))
-
-  const onViewListItems = onView.map(onview => (
-    <li className="onview-list__item" key={onview.id}>
-      <a
-        className="onview-list__item-link"
-        href={onview.link}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {onview.title}
-      </a>
     </li>
   ))
 
@@ -165,6 +141,7 @@ const Grid = styled.div`
   .onview-list__item,
   .exhibition-list__item {
     line-height: 1em;
+    cursor: pointer;
   }
 
   .onview-list__item:not(:last-child),
