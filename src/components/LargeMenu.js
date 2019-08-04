@@ -54,7 +54,7 @@ const LargeMenu = () => {
         </li>
         <li className="nav-list__item">
           <Link className="nav-list__item-link" to="/thoughts">
-            Thoughts
+            Studio Bits
           </Link>
         </li>
       </ul>
