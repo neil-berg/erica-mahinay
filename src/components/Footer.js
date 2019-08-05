@@ -10,12 +10,19 @@ const Footer = ({ location }) => (
 const StyledFooter = styled.footer`
   text-align: center;
   padding: 1rem;
-  color: var(--blue);
+  color: var(--gold);
 
   a {
     text-decoration: none;
-    color: var(--gold);
+    color: var(--sand);
     font-weight: bold;
+    transition: 0.3s linear;
+  }
+
+  @media (hover: hover) {
+    a:hover {
+      color: var(--pink);
+    }
   }
 
   @media screen and (min-width: 960px) {
