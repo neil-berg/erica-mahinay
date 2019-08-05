@@ -55,8 +55,8 @@ const SmallMenu = () => {
         onClick={e => {
           const className = e.target.className
           if (
-            className === "nav-list__item" ||
-            className === "nav-list__item-link"
+            className === "nav__option-list-item" ||
+            className === "nav__option-list-item-link"
           ) {
             setIsMenuOpen(false)
           }
@@ -90,7 +90,16 @@ const SmallMenu = () => {
         <div className="nav__option-container">
           <h3 className="nav__option-header">Info</h3>
           <ul className="nav__option-list">
-            <li className="nav__option-list-item">Contact</li>
+            <li className="nav__option-list-item">
+              <a
+                className="email"
+                href="mailto:ericamahinaystudio@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Contact
+              </a>
+            </li>
             <li className="nav__option-list-item">CV</li>
           </ul>
         </div>
@@ -200,6 +209,12 @@ const StyledMenu = styled(animated.nav)`
     transition: all 0.3s linear;
     padding: 0;
   }
+
+  .email {
+    text-decoration: none;
+    color: inherit;
+  }
+
   .nav__option-list-item-link:active,
   .nav__option-list-item-link:hover {
     outline-width: 0;

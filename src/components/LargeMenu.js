@@ -9,16 +9,16 @@ const LargeMenu = () => {
   const { onView, exhibitions } = useExhibitions()
 
   const renderExhibitionTitles = exhibitions.map(item => (
-    <li className="nav-list__item" key={item.id}>
-      <Link className="nav-list__item-link" to={`/${item.slug}`}>
+    <li className="nav__option-list-item" key={item.id}>
+      <Link className="nav__option-list-item-link" to={`/${item.slug}`}>
         {item.title}
       </Link>
     </li>
   ))
 
   const renderOnViewTitles = onView.map(item => (
-    <li className="nav-list__item" key={item.id}>
-      <Link className="nav-list__item-link" to={`/${item.slug}`}>
+    <li className="nav__option-list-item" key={item.id}>
+      <Link className="nav__option-list-item-link" to={`/${item.slug}`}>
         {item.title}
       </Link>
     </li>
@@ -31,38 +31,47 @@ const LargeMenu = () => {
           Erica Mahinay
         </Link>
       </h2>
-      {onView && (
-        <>
-          <h3 className="nav-list-header">
-            <span className="nav-list-header__text">On View</span>
-          </h3>
-          <ul className="nav-list-on-view">{renderOnViewTitles}</ul>
-        </>
+      {onView.length > 0 && (
+        <div className="nav__option-container">
+          <h3 className="nav__option-header">On View</h3>
+          <ul className="nav__option-list">{renderOnViewTitles}</ul>
+        </div>
       )}
-      <h3 className="nav-list-header">
-        <span className="nav-list-header__text">Exhibitions</span>
-      </h3>
-      <ul className="nav-list-exhibitions">{renderExhibitionTitles}</ul>
-      <h3 className="nav-list-header">
-        <span className="nav-list-header__text">Writing</span>
-      </h3>
-      <ul className="nav-list-writing">
-        <li className="nav-list__item">
-          <Link className="nav-list__item-link" to="/press">
-            Press
-          </Link>
-        </li>
-        <li className="nav-list__item">
-          <Link className="nav-list__item-link" to="/thoughts">
-            Thoughts
-          </Link>
-        </li>
-      </ul>
-      <h3 className="nav-list-header">Information</h3>
-      <ul className="nav-list-information">
-        <li className="nav-list__item">Contact</li>
-        <li className="nav-list__item">CV</li>
-      </ul>
+      <div className="nav__option-container">
+        <h3 className="nav__option-header">Exhibitions</h3>
+        <ul className="nav__option-list">{renderExhibitionTitles}</ul>
+      </div>
+      <div className="nav__option-container">
+        <h3 className="nav__option-header">Writing</h3>
+        <ul className="nav__option-list">
+          <li className="nav__option-list-item">
+            <Link className="nav__option-list-item-link" to="/press">
+              Press
+            </Link>
+          </li>
+          <li className="nav__option-list-item">
+            <Link className="nav__option-list-item-link" to="/thoughts">
+              Studio Bits
+            </Link>
+          </li>
+        </ul>
+      </div>
+      <div className="nav__option-container">
+        <h3 className="nav__option-header">Info</h3>
+        <ul className="nav__option-list">
+          <li className="nav__option-list-item">
+            <a
+              className="email"
+              href="mailto:ericamahinaystudio@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Contact
+            </a>
+          </li>
+          <li className="nav__option-list-item">CV</li>
+        </ul>
+      </div>
     </StyledMenu>
   )
 }
@@ -76,16 +85,11 @@ const StyledMenu = styled.nav`
   background: var(--white);
   color: var(--gold);
   z-index: 2;
-  padding: 1rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   overflow: scroll;
 
   .nav__header {
     font-size: 1.2em;
-    padding: 3rem 0;
-    // transform: rotate(-15deg);
+    padding: 2rem 0;
     text-align: center;
     text-transform: uppercase;
   }
@@ -95,47 +99,70 @@ const StyledMenu = styled.nav`
     text-decoration: none;
   }
 
-  .nav-list-on-view,
-  .nav-list-exhibitions,
-  .nav-list-writing,
-  .nav-list-information {
-    margin-bottom: 1rem;
-    // transform: rotate(-15deg);
-  }
-
-  .nav-list__item {
+  .nav__option-list-item {
     padding-bottom: 0.75em;
-    font-size: 0.95em;
+    font-size: 1em;
     font-weight: 300;
     line-height: 1em;
     text-align: center;
+    color: var(--gold);
+    text-align: left;
   }
 
-  .nav-list__item:first-child {
-    padding-top: 0.5em;
+  .nav__option-list-item:last-child {
+    padding-bottom: 0;
   }
 
-  .nav-list-header {
+  .nav__option-container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .nav__option-header {
     text-transform: uppercase;
+    writing-mode: vertical-lr;
     font-weight: normal;
-    font-size: 1.15em;
-    // transform: rotate(-15deg);
-    text-align: center;
-    border-bottom: 1px var(--sand) solid;
-    padding-bottom: 0.1em;
+    font-size: 1.1em;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem 1rem;
+    margin-bottom: 2rem;
   }
 
-  .nav-list__item-link {
+  .nav__option-list {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-left: 1px var(--sand) solid;
+    margin-bottom: 2rem;
+    padding-left: 1rem;
+  }
+
+  .nav__option-list-item-link {
     color: inherit;
     text-decoration: none;
-    transition: 0.3s linear;
+    transition: all 0.3s linear;
     padding: 0;
   }
-  .nav-list__item-link:active,
-  .nav-list__item-link:hover {
+
+  .email {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .nav__option-list-item-link:active,
+  .nav__option-list-item-link:hover {
     outline-width: 0;
     color: var(--pink);
-    font-weight: 400;
+  }
+
+  @media and (hover: hover) {
+    .nav-list__item-link:hover {
+      color: var(--pink);
+    }
   }
 
   @media screen and (max-width: 959px) {
