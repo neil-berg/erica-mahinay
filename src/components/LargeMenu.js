@@ -61,7 +61,7 @@ const LargeMenu = () => {
         <ul className="nav__option-list">
           <li className="nav__option-list-item">
             <a
-              className="email"
+              className="email nav__option-list-item-link"
               href="mailto:ericamahinaystudio@gmail.com"
               target="_blank"
               rel="noopener noreferrer"
@@ -69,7 +69,11 @@ const LargeMenu = () => {
               Contact
             </a>
           </li>
-          <li className="nav__option-list-item">CV</li>
+          <li className="nav__option-list-item">
+            <Link className="nav__option-list-item-link" to="/cv">
+              CV
+            </Link>
+          </li>
         </ul>
       </div>
     </StyledMenu>
@@ -151,6 +155,7 @@ const StyledMenu = styled.nav`
   .email {
     text-decoration: none;
     color: inherit;
+    cursor: pointer;
   }
 
   .nav__option-list-item-link:active,

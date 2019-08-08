@@ -92,7 +92,7 @@ const SmallMenu = () => {
           <ul className="nav__option-list">
             <li className="nav__option-list-item">
               <a
-                className="email"
+                className="email nav__option-list-item-link"
                 href="mailto:ericamahinaystudio@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -100,7 +100,11 @@ const SmallMenu = () => {
                 Contact
               </a>
             </li>
-            <li className="nav__option-list-item">CV</li>
+            <li className="nav__option-list-item">
+              <Link className="nav__option-list-item-link" to="/cv">
+                CV
+              </Link>
+            </li>
           </ul>
         </div>
       </StyledMenu>
@@ -113,8 +117,8 @@ const MenuHeader = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: ${props => (props.isMenuOpen ? "1rem" : "1rem 0")};
-  max-width: ${props => (props.isMenuOpen ? "960px" : "600px")};
+  padding: 1rem 0;
+  max-width: 600px;
   margin: 0 auto;
 
   .header__text {
@@ -213,6 +217,7 @@ const StyledMenu = styled(animated.nav)`
   .email {
     text-decoration: none;
     color: inherit;
+    cursor: pointer;
   }
 
   .nav__option-list-item-link:active,

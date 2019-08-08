@@ -55,11 +55,18 @@ const CV = () => {
   const handleItemLink = item => {
     if (item.link) {
       return validator.isURL(item.link) ? (
-        <a href={item.link} target="_blank" rel="noopener noreferrer">
+        <a
+          className="list__item-link"
+          href={item.link}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {item.linkText}
         </a>
       ) : (
-        <Link to={`/${item.link}`}>{item.linkText}</Link>
+        <Link className="list__item-link" to={`/${item.link}`}>
+          {item.linkText}
+        </Link>
       )
     }
   }
@@ -70,12 +77,12 @@ const CV = () => {
     // Create lists of each item per year for this section
     const yearLists = years.map((year, j) => {
       return (
-        <div key={j}>
-          <h3>{year}</h3>
-          <ul>
+        <div className="list-container" key={j}>
+          <h3 className="list__header">{year}</h3>
+          <ul className="list">
             {data[section][year].map(item => (
-              <li key={item.id}>
-                <p>
+              <li className="list__item" key={item.id}>
+                <p className="list__item-text">
                   {handleItemLink(item)}
                   {item.link && ", "}
                   {item.text}
@@ -87,10 +94,10 @@ const CV = () => {
       )
     })
     return (
-      <div key={i}>
-        <h2>{section}</h2>
+      <section className="section" key={i}>
+        <h2 className="section__header">{section}</h2>
         {yearLists}
-      </div>
+      </section>
     )
   })
 
@@ -98,21 +105,86 @@ const CV = () => {
     <Layout>
       <SEO title="Press" description="Press articles for Erica Mahinay" />
       <Container>
-        <h2>CV</h2>
+        <section className="section">
+          <h2 className="section__header">Education</h2>
+          <div className="list-container">
+            <h3 className="list__header">2013</h3>
+            <ul className="list">
+              <li className="list__item">
+                <p className="list__item-text">Cranbrook Academy of Art, MFA</p>
+              </li>
+            </ul>
+            <h3 className="list__header">2008</h3>
+            <ul className="list">
+              <li className="list__item">
+                <p className="list__item-text">
+                  Kansas City Art Institute, BFA
+                </p>
+              </li>
+            </ul>
+          </div>
+        </section>
         {renderSections}
       </Container>
     </Layout>
   )
 }
 
-const Container = styled.section`
+const Container = styled.article`
   min-height: 90vh;
   padding: 1rem;
   margin-top: 2rem;
+  color: var(--gold);
+
+  .section {
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+  }
+
+  .section__header {
+    font-size: 1.3em;
+    font-weight: 200;
+    margin-bottom: 0.5rem;
+  }
+
+  .list-container {
+    margin-bottom: 1rem;
+  }
+
+  .list__header {
+    font-size: 1em;
+    padding-bottom: 0.25rem;
+  }
+
+  .list__item {
+    line-height: 1.3em;
+    padding-bottom: 0.5rem;
+    font-weight: 200;
+  }
+
+  .list__item-link {
+    color: inherit;
+    text-decoration: none;
+    padding-bottom: 1px;
+    border-bottom: 1px var(--gold) solid;
+    transition: all 0.2s ease-out;
+  }
+
+  .list__item-link:active,
+  .list__item-link:visited {
+    color: var(--gold);
+  }
+
+  @media (hover: hover) {
+    .list__item-link:hover {
+      color: var(--pink);
+      border-bottom: 1px var(--pink) solid;
+    }
+  }
 
   @media screen and (min-width: 960px) {
     margin-left: 300px;
-    margin-top: 2rem;
+    margin-top: 1rem;
   }
 `
 
