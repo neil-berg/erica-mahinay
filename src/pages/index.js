@@ -30,7 +30,7 @@ const IndexPage = () => {
   return (
     <HomeContainer>
       <SEO title="Home" />
-      <Grid onView={onView.length > 0 ? true : false}>
+      <Grid onview={onView.length > 0 ? true : false}>
         <h1 className="name">Erica Mahinay</h1>
         <div className="exhibition-list">
           <ul>
@@ -188,7 +188,7 @@ const Grid = styled.div`
     .exhibition-list {
       grid-column: 1 / 3;
       grid-row: 1 / 5;
-      align-self: ${props => (props.onView ? "center" : "start")};
+      align-self: ${props => (props.onview ? "center" : "start")};
       border-left: 15px solid var(--pink);
     }
 

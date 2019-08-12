@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { graphql } from "gatsby"
+import Img from "gatsby-image"
 import styled from "styled-components"
 
 import SEO from "../components/seo"
@@ -25,7 +26,7 @@ export const query = graphql`
           }
           localFile {
             childImageSharp {
-              fluid(maxWidth: 800) {
+              fluid(maxWidth: 600) {
                 ...GatsbyImageSharpFluid_withWebp
               }
             }
@@ -45,24 +46,25 @@ const ExhibitionTemplate = props => {
   ))
 
   const [showModal, setShowModal] = useState(false)
-  const [modalImages, setModalImages] = useState([])
+  const [imageIndex, setImageIndex] = useState(0)
 
   const handleImageClick = e => {
-    if (e.target.nodeName === "IMG") {
-      // Obtain details on the clicked image based on the image's
-      // parent div's data-id attribute
-      const parentId = e.target.closest(".image-card").dataset.id
+    console.log("clicked")
+    // if (e.target.nodeName === "IMG") {
+    //   // Obtain details on the clicked image based on the image's
+    //   // parent div's data-id attribute
+    //   const parentId = e.target.closest(".image-card").dataset.id
 
-      // Rearrange the imageData array so the clicked image is the
-      // starting index
-      const startingIndex = images.map(image => image.id).indexOf(parentId)
-      const rearrangedImages = images
-        .slice(startingIndex)
-        .concat(images.slice(0, startingIndex))
+    //   // Rearrange the imageData array so the clicked image is the
+    //   // starting index
+    //   const startingIndex = images.map(image => image.id).indexOf(parentId)
+    //   //   const rearrangedImages = images
+    //   //     .slice(startingIndex)
+    //   //     .concat(images.slice(0, startingIndex))
 
-      setShowModal(true)
-      setModalImages(rearrangedImages)
-    }
+    //   setShowModal(true)
+    //   setImageIndex(startingIndex)
+    // }
   }
 
   return (
@@ -92,18 +94,19 @@ const ExhibitionTemplate = props => {
             Press release
           </a>
         </div>
-        <section
-          className="exhibition__images"
+        <ul
+          className="exhibition__image-list"
           onClick={e => handleImageClick(e)}
         >
           {renderImages}
-        </section>
+        </ul>
       </TemplateWrapper>
       <Portal>
         <Modal
           showModal={showModal}
           setShowModal={setShowModal}
-          modalImages={modalImages}
+          images={images}
+          imageIndex={imageIndex}
         />
       </Portal>
     </Layout>
@@ -111,14 +114,10 @@ const ExhibitionTemplate = props => {
 }
 
 const TemplateWrapper = styled.div`
-  .header,
-  .exhibition__images {
-    max-width: 600px;
-    margin: 2rem auto;
-  }
-
   .header {
     color: var(--gold);
+    max-width: 600px;
+    margin: 2rem auto;
   }
 
   .header__exhibition-title {
@@ -141,6 +140,12 @@ const TemplateWrapper = styled.div`
     transition: 0.3s linear;
   }
 
+  .exhibition__image-list {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
   @media (hover: hover) {
     .header__exhibition-press-release:hover {
       color: var(--pink);
@@ -149,7 +154,7 @@ const TemplateWrapper = styled.div`
 
   @media screen and (max-width: 600px) {
     .header,
-    .exhibition__images {
+    .exhibition__image-list {
       padding: 0 1rem;
     }
   }

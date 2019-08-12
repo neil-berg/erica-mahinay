@@ -16,8 +16,8 @@ const ImageCard = ({ image }) => {
   )
 }
 
-const ImageCardWrapper = styled.div`
-  margin-bottom: 4rem;
+const ImageCardWrapper = styled.li`
+  margin-bottom: 3rem;
   cursor: pointer;
 
   .card__details {
