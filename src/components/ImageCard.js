@@ -4,7 +4,7 @@ import styled from "styled-components"
 
 const ImageCard = ({ image }) => {
   return (
-    <ImageCardWrapper>
+    <ImageCardWrapper className="image-card" data-id={image.id}>
       <Img className="card__image" fluid={image.imageFile.fluid} />
       <section className="card__details">
         <h3 className="details__title">{image.title}</h3>
@@ -18,6 +18,7 @@ const ImageCard = ({ image }) => {
 
 const ImageCardWrapper = styled.div`
   margin-bottom: 4rem;
+  cursor: pointer;
 
   .card__details {
     color: var(--sand);
