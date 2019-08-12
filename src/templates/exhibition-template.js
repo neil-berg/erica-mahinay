@@ -1,10 +1,12 @@
-import React from "react"
+import React, { useState } from "react"
 import { graphql } from "gatsby"
 import styled from "styled-components"
 
 import SEO from "../components/seo"
 import Layout from "../components/layout"
 import ImageCard from "../components/ImageCard"
+import Portal from "../components/Portal"
+import Modal from "../components/Modal"
 
 export const query = graphql`
   query($exhibitionTitle: String!) {
@@ -21,6 +23,13 @@ export const query = graphql`
           fluid(maxWidth: 600) {
             ...GatsbyContentfulFluid_withWebp
           }
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 800) {
+                ...GatsbyImageSharpFluid_withWebp
+              }
+            }
+          }
         }
         materials
       }
@@ -30,9 +39,32 @@ export const query = graphql`
 
 const ExhibitionTemplate = props => {
   const images = props.data.allContentfulImage.nodes
+
   const renderImages = images.map(image => (
     <ImageCard key={image.id} image={image} />
   ))
+
+  const [showModal, setShowModal] = useState(false)
+  const [modalImages, setModalImages] = useState([])
+
+  const handleImageClick = e => {
+    if (e.target.nodeName === "IMG") {
+      // Obtain details on the clicked image based on the image's
+      // parent div's data-id attribute
+      const parentId = e.target.closest(".image-card").dataset.id
+
+      // Rearrange the imageData array so the clicked image is the
+      // starting index
+      const startingIndex = images.map(image => image.id).indexOf(parentId)
+      const rearrangedImages = images
+        .slice(startingIndex)
+        .concat(images.slice(0, startingIndex))
+
+      setShowModal(true)
+      setModalImages(rearrangedImages)
+    }
+  }
+
   return (
     <Layout>
       <SEO
@@ -60,8 +92,20 @@ const ExhibitionTemplate = props => {
             Press release
           </a>
         </div>
-        <section className="exhibition__images">{renderImages}</section>
+        <section
+          className="exhibition__images"
+          onClick={e => handleImageClick(e)}
+        >
+          {renderImages}
+        </section>
       </TemplateWrapper>
+      <Portal>
+        <Modal
+          showModal={showModal}
+          setShowModal={setShowModal}
+          modalImages={modalImages}
+        />
+      </Portal>
     </Layout>
   )
 }

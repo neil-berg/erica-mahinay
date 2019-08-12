@@ -13,6 +13,7 @@ module.exports = {
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        downloadLocal: true,
       },
     },
     `gatsby-transformer-sharp`,
@@ -34,6 +35,13 @@ module.exports = {
       resolve: `gatsby-plugin-favicon`,
       options: {
         logo: `./src/images/e-logo.png`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-portal`,
+      options: {
+        key: "portal",
+        id: "portal",
       },
     },
     {
