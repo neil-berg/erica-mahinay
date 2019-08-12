@@ -6,9 +6,10 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons"
 import propTypes from "prop-types"
 import { motion, AnimatePresence } from "framer-motion"
 
-import Carousel from "./Carousel"
+//import Carousel from "./Carousel"
+import Carousel from "nuka-carousel"
 
-const Modal = ({ showModal, setShowModal, modalImages }) => {
+const Modal = ({ showModal, setShowModal, images, imageIndex }) => {
   return (
     <AnimatePresence initial={false}>
       <Container>
@@ -27,7 +28,23 @@ const Modal = ({ showModal, setShowModal, modalImages }) => {
               }
             }}
           >
-            <div className="card">
+            <Carousel
+              wrapAround={true}
+              slideIndex={imageIndex}
+              renderBottomCenterControls={null}
+              heightMode={false}
+              initialSlideHeight={700}
+            >
+              {images.map((image, i) => (
+                <div className="image-container" key={i}>
+                  <img
+                    className="image"
+                    src={image.imageFile.localFile.childImageSharp.fluid.src}
+                  />
+                </div>
+              ))}
+            </Carousel>
+            {/* <div className="card">
               <Carousel modalImages={modalImages} />
               <div>
                 <button
@@ -37,7 +54,7 @@ const Modal = ({ showModal, setShowModal, modalImages }) => {
                   <FontAwesomeIcon icon={faTimes} color="grey" />
                 </button>
               </div>
-            </div>
+            </div> */}
           </motion.div>
         )}
       </Container>
@@ -54,10 +71,24 @@ const Container = styled.div`
     height: 100vh;
     z-index: 200;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: white;
     overflow: hidden;
+  }
+
+  .image-container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .image {
+    display: block;
+    max-height: 80vh;
+    width: auto;
   }
 
   .card {
@@ -73,7 +104,7 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
+    position: fixed;
     top: -55px;
     right: 0.5rem;
     font-size: 1.5rem;
@@ -85,7 +116,8 @@ const Container = styled.div`
 Modal.propTypes = {
   showModal: propTypes.bool.isRequired,
   setShowModal: propTypes.func.isRequired,
-  modalImages: propTypes.array.isRequired,
+  images: propTypes.array.isRequired,
+  imageIndex: propTypes.number.isRequired,
 }
 
 export default Modal
