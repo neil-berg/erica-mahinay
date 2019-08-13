@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -10,6 +10,9 @@ import { motion, AnimatePresence } from "framer-motion"
 import Carousel from "nuka-carousel"
 
 const Modal = ({ showModal, setShowModal, images, startIndex }) => {
+  // Obtain viewport height to set carousel image height
+  const innerHeight = window.innerHeight
+
   return (
     <AnimatePresence initial={false}>
       <Container>
@@ -31,10 +34,13 @@ const Modal = ({ showModal, setShowModal, images, startIndex }) => {
             <Carousel
               wrapAround={true}
               slideIndex={startIndex}
-              renderBottomCenterControls={null}
               heightMode={false}
-              initialSlideHeight={700}
+              initialSlideHeight={innerHeight}
               enableKeyboardControls={true}
+              renderBottomCenterControls={null}
+              renderTopCenterControls={() => (
+                <button onClick={() => setShowModal(false)}>CLOSE</button>
+              )}
               renderCenterLeftControls={({ previousSlide }) => (
                 <button className="carousel__button" onClick={previousSlide}>
                   <FontAwesomeIcon
