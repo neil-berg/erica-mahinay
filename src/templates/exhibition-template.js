@@ -45,26 +45,19 @@ const ExhibitionTemplate = props => {
     <ImageCard key={image.id} image={image} />
   ))
 
+  // State of modal and the first image to show in the carousel
   const [showModal, setShowModal] = useState(false)
-  const [imageIndex, setImageIndex] = useState(0)
+  const [startIndex, setStartIndex] = useState(0)
 
   const handleImageClick = e => {
-    console.log("clicked")
-    // if (e.target.nodeName === "IMG") {
-    //   // Obtain details on the clicked image based on the image's
-    //   // parent div's data-id attribute
-    //   const parentId = e.target.closest(".image-card").dataset.id
+    if (e.target.nodeName === "IMG") {
+      // Obtain image index based on the parent div's data-id attribute
+      const parentId = e.target.closest(".image-card").dataset.id
+      const imageIndex = images.map(image => image.id).indexOf(parentId)
 
-    //   // Rearrange the imageData array so the clicked image is the
-    //   // starting index
-    //   const startingIndex = images.map(image => image.id).indexOf(parentId)
-    //   //   const rearrangedImages = images
-    //   //     .slice(startingIndex)
-    //   //     .concat(images.slice(0, startingIndex))
-
-    //   setShowModal(true)
-    //   setImageIndex(startingIndex)
-    // }
+      setStartIndex(imageIndex)
+      setShowModal(true)
+    }
   }
 
   return (
@@ -106,7 +99,7 @@ const ExhibitionTemplate = props => {
           showModal={showModal}
           setShowModal={setShowModal}
           images={images}
-          imageIndex={imageIndex}
+          startIndex={startIndex}
         />
       </Portal>
     </Layout>

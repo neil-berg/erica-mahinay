@@ -9,7 +9,7 @@ import { motion, AnimatePresence } from "framer-motion"
 //import Carousel from "./Carousel"
 import Carousel from "nuka-carousel"
 
-const Modal = ({ showModal, setShowModal, images, imageIndex }) => {
+const Modal = ({ showModal, setShowModal, images, startIndex }) => {
   return (
     <AnimatePresence initial={false}>
       <Container>
@@ -30,10 +30,11 @@ const Modal = ({ showModal, setShowModal, images, imageIndex }) => {
           >
             <Carousel
               wrapAround={true}
-              slideIndex={imageIndex}
+              slideIndex={startIndex}
               renderBottomCenterControls={null}
               heightMode={false}
               initialSlideHeight={700}
+              enableKeyboardControls={true}
             >
               {images.map((image, i) => (
                 <div className="image-container" key={i}>
@@ -81,19 +82,16 @@ const Container = styled.div`
   .image-container {
     max-width: 800px;
     margin: 0 auto;
+    position: relative;
     display: flex;
+    align-items: center;
     justify-content: center;
   }
 
   .image {
     display: block;
-    max-height: 80vh;
+    max-height: 100vh;
     width: auto;
-  }
-
-  .card {
-    position: relative;
-    z-index: 201;
   }
 
   .card__button {
@@ -117,7 +115,7 @@ Modal.propTypes = {
   showModal: propTypes.bool.isRequired,
   setShowModal: propTypes.func.isRequired,
   images: propTypes.array.isRequired,
-  imageIndex: propTypes.number.isRequired,
+  startIndex: propTypes.number.isRequired,
 }
 
 export default Modal
