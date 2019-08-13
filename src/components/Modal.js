@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faTimes } from "@fortawesome/free-solid-svg-icons"
+import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons"
 import propTypes from "prop-types"
 import { motion, AnimatePresence } from "framer-motion"
 
@@ -35,6 +35,22 @@ const Modal = ({ showModal, setShowModal, images, startIndex }) => {
               heightMode={false}
               initialSlideHeight={700}
               enableKeyboardControls={true}
+              renderCenterLeftControls={({ previousSlide }) => (
+                <button className="carousel__button" onClick={previousSlide}>
+                  <FontAwesomeIcon
+                    className="carousel__button-icon"
+                    icon={faCaretLeft}
+                  />
+                </button>
+              )}
+              renderCenterRightControls={({ nextSlide }) => (
+                <button className="carousel__button" onClick={nextSlide}>
+                  <FontAwesomeIcon
+                    className="carousel__button-icon"
+                    icon={faCaretRight}
+                  />
+                </button>
+              )}
             >
               {images.map((image, i) => (
                 <div className="image-container" key={i}>
@@ -80,9 +96,9 @@ const Container = styled.div`
   }
 
   .image-container {
+    height: 100vh;
     max-width: 800px;
     margin: 0 auto;
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -92,6 +108,26 @@ const Container = styled.div`
     display: block;
     max-height: 100vh;
     width: auto;
+  }
+
+  .carousel__button {
+    background: rgba(211, 211, 211, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    outline: 0;
+  }
+
+  .carousel__button:active {
+    outline: 0;
+  }
+
+  .carousel__button-icon {
+    padding: 0;
+    color: white;
+    font-size: 36px;
   }
 
   .card__button {
