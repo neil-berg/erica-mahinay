@@ -120,19 +120,16 @@ const MenuHeader = styled.div`
   padding: 1rem 0;
   max-width: 600px;
   margin: 0 auto;
-
   .header__text {
     font-size: 0.9rem;
     text-transform: uppercase;
     color: var(--gold);
   }
-
   .header__text-link {
     color: inherit;
     text-decoration: none;
     cursor: pointer;
   }
-
   .header__button {
     color: ${props => (props.isMenuOpen ? "var(--sand)" : "var(--gold)")};
     background: transparent;
@@ -143,11 +140,9 @@ const MenuHeader = styled.div`
     transition: color 0.4s ease-in;
     cursor: pointer;
   }
-
   @media screen and (max-width: 600px) {
     padding: 1rem 1rem;
   }
-
   @media screen and (min-width: 960px) {
     display: none;
   }
@@ -164,7 +159,6 @@ const StyledMenu = styled(animated.nav)`
   z-index: 2;
   padding: 5rem 1rem 0 0;
   overflow-y: scroll;
-
   .nav__option-list-item {
     padding-bottom: 0.75em;
     font-size: 1em;
@@ -174,16 +168,13 @@ const StyledMenu = styled(animated.nav)`
     color: var(--gold);
     text-align: left;
   }
-
   .nav__option-list-item:last-child {
     padding-bottom: 0;
   }
-
   .nav__option-container {
     display: flex;
     flex-direction: row;
   }
-
   .nav__option-header {
     text-transform: uppercase;
     writing-mode: vertical-lr;
@@ -196,7 +187,6 @@ const StyledMenu = styled(animated.nav)`
     padding: 0.25rem 1rem;
     margin-bottom: 2rem;
   }
-
   .nav__option-list {
     flex-grow: 1;
     display: flex;
@@ -206,32 +196,27 @@ const StyledMenu = styled(animated.nav)`
     margin-bottom: 2rem;
     padding-left: 1rem;
   }
-
   .nav__option-list-item-link {
     color: inherit;
     text-decoration: none;
     transition: all 0.3s linear;
     padding: 0;
   }
-
   .email {
     text-decoration: none;
     color: inherit;
     cursor: pointer;
   }
-
   .nav__option-list-item-link:active,
   .nav__option-list-item-link:hover {
     outline-width: 0;
     color: var(--pink);
   }
-
   @media and (hover: hover) {
     .nav-list__item-link:hover {
       color: var(--pink);
     }
   }
-
   @media screen and (min-width: 960px) {
     display: none;
   }
