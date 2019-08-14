@@ -38,9 +38,9 @@ const Modal = ({ showModal, setShowModal, images, startIndex }) => {
               initialSlideHeight={innerHeight}
               enableKeyboardControls={true}
               renderBottomCenterControls={null}
-              renderTopCenterControls={() => (
-                <button onClick={() => setShowModal(false)}>CLOSE</button>
-              )}
+              // renderTopCenterControls={() => (
+              //   <button onClick={() => setShowModal(false)}>CLOSE</button>
+              // )}
               renderCenterLeftControls={({ previousSlide }) => (
                 <button className="carousel__button" onClick={previousSlide}>
                   <FontAwesomeIcon
