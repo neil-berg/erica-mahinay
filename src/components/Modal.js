@@ -38,25 +38,42 @@ const Modal = ({ showModal, setShowModal, images, startIndex }) => {
               initialSlideHeight={innerHeight}
               enableKeyboardControls={true}
               renderBottomCenterControls={null}
-              // renderTopCenterControls={() => (
+              // renderTopRightControls={() => (
               //   <button onClick={() => setShowModal(false)}>CLOSE</button>
               // )}
-              renderCenterLeftControls={({ previousSlide }) => (
-                <button className="carousel__button" onClick={previousSlide}>
-                  <FontAwesomeIcon
-                    className="carousel__button-icon"
-                    icon={faCaretLeft}
-                  />
-                </button>
+              renderTopCenterControls={({ previousSlide, nextSlide }) => (
+                <div
+                  style={{
+                    display: "flex",
+                    width: "100vw",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <div className="toggles">
+                    <button onClick={previousSlide}>PREV</button>
+                    <button onClick={nextSlide}>NEXT</button>
+                  </div>
+                  <button onClick={() => setShowModal(false)}>CLOSE</button>
+                </div>
               )}
-              renderCenterRightControls={({ nextSlide }) => (
-                <button className="carousel__button" onClick={nextSlide}>
-                  <FontAwesomeIcon
-                    className="carousel__button-icon"
-                    icon={faCaretRight}
-                  />
-                </button>
-              )}
+              renderCenterLeftControls={null}
+              renderCenterRightControls={null}
+              // renderCenterLeftControls={({ previousSlide }) => (
+              //   <button className="carousel__button" onClick={previousSlide}>
+              //     <FontAwesomeIcon
+              //       className="carousel__button-icon"
+              //       icon={faCaretLeft}
+              //     />
+              //   </button>
+              // )}
+              // renderCenterRightControls={({ nextSlide }) => (
+              //   <button className="carousel__button" onClick={nextSlide}>
+              //     <FontAwesomeIcon
+              //       className="carousel__button-icon"
+              //       icon={faCaretRight}
+              //     />
+              //   </button>
+              // )}
             >
               {images.map((image, i) => (
                 <div className="image-container" key={i}>
