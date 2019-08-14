@@ -37,43 +37,27 @@ const Modal = ({ showModal, setShowModal, images, startIndex }) => {
               heightMode={false}
               initialSlideHeight={innerHeight}
               enableKeyboardControls={true}
-              renderBottomCenterControls={null}
-              // renderTopRightControls={() => (
-              //   <button onClick={() => setShowModal(false)}>CLOSE</button>
-              // )}
-              renderTopCenterControls={({ previousSlide, nextSlide }) => (
-                <div
-                  style={{
-                    display: "flex",
-                    width: "100vw",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <div className="toggles">
-                    <button onClick={previousSlide}>PREV</button>
-                    <button onClick={nextSlide}>NEXT</button>
-                  </div>
-                  <button onClick={() => setShowModal(false)}>CLOSE</button>
-                </div>
-              )}
               renderCenterLeftControls={null}
               renderCenterRightControls={null}
-              // renderCenterLeftControls={({ previousSlide }) => (
-              //   <button className="carousel__button" onClick={previousSlide}>
-              //     <FontAwesomeIcon
-              //       className="carousel__button-icon"
-              //       icon={faCaretLeft}
-              //     />
-              //   </button>
-              // )}
-              // renderCenterRightControls={({ nextSlide }) => (
-              //   <button className="carousel__button" onClick={nextSlide}>
-              //     <FontAwesomeIcon
-              //       className="carousel__button-icon"
-              //       icon={faCaretRight}
-              //     />
-              //   </button>
-              // )}
+              renderBottomCenterControls={null}
+              renderTopCenterControls={({ previousSlide, nextSlide }) => (
+                <div className="button-container">
+                  <div className="toggles-container">
+                    <button className="button toggle" onClick={previousSlide}>
+                      PREV
+                    </button>
+                    <button className="button toggle" onClick={nextSlide}>
+                      NEXT
+                    </button>
+                  </div>
+                  <button
+                    className="button close"
+                    onClick={() => setShowModal(false)}
+                  >
+                    CLOSE
+                  </button>
+                </div>
+              )}
             >
               {images.map((image, i) => (
                 <div className="image-container" key={i}>
@@ -84,17 +68,6 @@ const Modal = ({ showModal, setShowModal, images, startIndex }) => {
                 </div>
               ))}
             </Carousel>
-            {/* <div className="card">
-              <Carousel modalImages={modalImages} />
-              <div>
-                <button
-                  className="card__button"
-                  onClick={() => setShowModal(false)}
-                >
-                  <FontAwesomeIcon icon={faTimes} color="grey" />
-                </button>
-              </div>
-            </div> */}
           </motion.div>
         )}
       </Container>
@@ -125,6 +98,7 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: auto;
   }
 
   .image {
@@ -133,40 +107,32 @@ const Container = styled.div`
     width: auto;
   }
 
-  .carousel__button {
-    background: rgba(211, 211, 211, 0.5);
+  .slider-slide.slide-visible {
+    cursor: auto;
+  }
+
+  .button-container {
+    width: 100vw;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+
+  .button {
     padding: 0.5rem 1rem;
-    outline: 0;
-  }
-
-  .carousel__button:active {
-    outline: 0;
-  }
-
-  .carousel__button-icon {
-    padding: 0;
-    color: white;
-    font-size: 36px;
-  }
-
-  .card__button {
-    width: 40px;
-    height: 40px;
-    background: transparent;
-    border: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: -55px;
-    right: 0.5rem;
-    font-size: 1.5rem;
+    background: rgba(255, 255, 255, 0.5);
+    color: var(--gold);
+    border: 0;
     cursor: pointer;
-    z-index: 202;
+  }
+
+  .button.toggle:first-child {
+    margin-right: 1rem;
+  }
+
+  .button:active,
+  .button:focus {
+    outline: 0;
   }
 `
 
