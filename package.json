@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "erica-mahinay-portfolio",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Erica Mahinay Portfolio",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Neil Berg <neil@neilberg.dev>",
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^13.2.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
@@ -11,7 +11,6 @@
     "@fortawesome/react-fontawesome": "^0.1.4",
     "babel-plugin-styled-components": "^1.10.6",
     "dotenv": "^8.0.0",
-    "framer-motion": "^1.4.0",
     "gatsby": "^2.10.4",
     "gatsby-image": "^2.2.6",
     "gatsby-plugin-favicon": "^3.1.6",
@@ -53,9 +52,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/neil-berg/erica-mahinay"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/neil-berg/erica-mahinay/issues"
   }
 }
