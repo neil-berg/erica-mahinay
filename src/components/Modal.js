@@ -1,10 +1,8 @@
-import React, { useEffect } from "react"
+import React from "react"
 import styled from "styled-components"
+import { animated, useTransition } from "react-spring"
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons"
 import propTypes from "prop-types"
-import { motion, AnimatePresence } from "framer-motion"
 
 //import Carousel from "./Carousel"
 import Carousel from "nuka-carousel"
@@ -13,65 +11,73 @@ const Modal = ({ showModal, setShowModal, images, startIndex }) => {
   // Obtain viewport height to set carousel image height
   const innerHeight = window.innerHeight
 
+  const transition = useTransition(showModal, null, {
+    delay: 2,
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+  })
+
   return (
-    <AnimatePresence initial={false}>
-      <Container>
-        {showModal && (
-          <motion.div
-            key="modal"
-            className="backdrop"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            aria-modal="true"
-            role="dialog"
-            onClick={e => {
-              if (e.target.classList.contains("backdrop")) {
-                setShowModal(false)
-              }
-            }}
-          >
-            <Carousel
-              wrapAround={true}
-              slideIndex={startIndex}
-              heightMode={false}
-              initialSlideHeight={innerHeight}
-              enableKeyboardControls={true}
-              renderCenterLeftControls={null}
-              renderCenterRightControls={null}
-              renderBottomCenterControls={null}
-              renderTopCenterControls={({ previousSlide, nextSlide }) => (
-                <div className="button-container">
-                  <div className="toggles-container">
-                    <button className="button toggle" onClick={previousSlide}>
-                      PREV
-                    </button>
-                    <button className="button toggle" onClick={nextSlide}>
-                      NEXT
+    <Container>
+      {transition.map(({ item, key, props: animation }) => {
+        return (
+          item && (
+            <animated.div
+              key={key}
+              className="backdrop"
+              style={animation}
+              aria-modal="true"
+              role="dialog"
+              onClick={e => {
+                if (e.target.classList.contains("backdrop")) {
+                  setShowModal(false)
+                }
+              }}
+            >
+              <Carousel
+                wrapAround={true}
+                slideIndex={startIndex}
+                heightMode={false}
+                initialSlideHeight={innerHeight}
+                enableKeyboardControls={true}
+                renderCenterLeftControls={null}
+                renderCenterRightControls={null}
+                renderBottomCenterControls={null}
+                renderTopCenterControls={({ previousSlide, nextSlide }) => (
+                  <div className="button-container">
+                    <div className="toggles-container">
+                      <button className="button toggle" onClick={previousSlide}>
+                        PREV
+                      </button>
+                      <button className="button toggle" onClick={nextSlide}>
+                        NEXT
+                      </button>
+                    </div>
+                    <button
+                      className="button close"
+                      onClick={() => setShowModal(false)}
+                    >
+                      CLOSE
                     </button>
                   </div>
-                  <button
-                    className="button close"
-                    onClick={() => setShowModal(false)}
-                  >
-                    CLOSE
-                  </button>
-                </div>
-              )}
-            >
-              {images.map((image, i) => (
-                <div className="image-container" key={i}>
-                  <img
-                    className="image"
-                    src={image.imageFile.localFile.childImageSharp.fluid.src}
-                  />
-                </div>
-              ))}
-            </Carousel>
-          </motion.div>
-        )}
-      </Container>
-    </AnimatePresence>
+                )}
+              >
+                {images.map((image, i) => (
+                  <div className="image-container" key={i}>
+                    <img
+                      className="image"
+                      src={image.imageFile.localFile.childImageSharp.fluid.src}
+                      alt="modal zoom-in"
+                    />
+                  </div>
+                ))}
+              </Carousel>
+            </animated.div>
+          )
+        )
+      })}
+    </Container>
   )
 }
 
