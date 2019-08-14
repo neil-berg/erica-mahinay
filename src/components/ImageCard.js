@@ -18,7 +18,7 @@ const ImageCard = ({ image }) => {
 
 const ImageCardWrapper = styled.li`
   margin-bottom: 3rem;
-  cursor: pointer;
+  cursor: zoom-in;
 
   .card__details {
     color: var(--sand);
