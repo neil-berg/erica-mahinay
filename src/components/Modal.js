@@ -44,9 +44,6 @@ const Modal = ({ showModal, setShowModal, images, startIndex }) => {
                 renderCenterLeftControls={null}
                 renderCenterRightControls={null}
                 renderBottomCenterControls={null}
-                renderCenterCenterControls={({ nextSlide }) => (
-                  <div className="center-container" onClick={nextSlide} />
-                )}
                 renderTopCenterControls={({ previousSlide, nextSlide }) => (
                   <div className="button-container">
                     <div className="toggles-container">
@@ -120,11 +117,6 @@ const Container = styled.div`
     cursor: auto;
   }
 
-  .center-container {
-    height: 400px;
-    width: 100vw;
-  }
-
   .button-container {
     width: 100vw;
     display: flex;
@@ -148,12 +140,6 @@ const Container = styled.div`
   .button:active,
   .button:focus {
     outline: 0;
-  }
-
-  @media screen and (min-width: 600px) {
-    .center-container {
-      width: 600px;
-    }
   }
 `
 
