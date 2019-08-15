@@ -103,7 +103,7 @@ const CV = () => {
 
   return (
     <Layout>
-      <SEO title="Press" description="Press articles for Erica Mahinay" />
+      <SEO title="CV" description="Press articles for Erica Mahinay" />
       <Container>
         <section className="section">
           <h2 className="section__header">Education</h2>
