@@ -63,7 +63,7 @@ exports.createPages = async ({ actions, graphql }) => {
     const next = index === 0 ? null : posts[index - 1]
 
     actions.createPage({
-      path: `/thoughts/${post.slug}`,
+      path: `/studio-notes/${post.slug}`,
       component: path.resolve(`./src/templates/post-template.js`),
       context: {
         slug: post.slug,

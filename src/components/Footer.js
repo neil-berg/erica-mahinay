@@ -11,6 +11,7 @@ const StyledFooter = styled.footer`
   text-align: center;
   padding: 1rem;
   color: var(--gold);
+  font-size: 0.9em;
 
   a {
     text-decoration: none;

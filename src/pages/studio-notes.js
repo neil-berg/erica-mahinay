@@ -5,7 +5,7 @@ import styled from "styled-components"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const Thoughts = () => {
+const StudioNotes = () => {
   const data = useStaticQuery(graphql`
     {
       allContentfulBlogPost(sort: { fields: date, order: DESC }) {
@@ -23,7 +23,7 @@ const Thoughts = () => {
   const renderPosts = posts.map(post => {
     return (
       <li key={post.id} className="post">
-        <Link className="post__link" to={`/thoughts/${post.slug}`}>
+        <Link className="post__link" to={`/studio-notes/${post.slug}`}>
           <h2 className="post__date">{post.date}</h2>
           <h2 className="post__title">{post.title}</h2>
         </Link>
@@ -33,14 +33,14 @@ const Thoughts = () => {
   return (
     <Layout>
       <SEO title="Thoughts" description="Blog of Erica Mahinay's Thoughts" />
-      <ThoughtsContainer>
+      <NotesContainer>
         <ul className="post-list">{renderPosts}</ul>
-      </ThoughtsContainer>
+      </NotesContainer>
     </Layout>
   )
 }
 
-const ThoughtsContainer = styled.div`
+const NotesContainer = styled.div`
   min-height: 80vh;
 
   .post-list {
@@ -83,4 +83,4 @@ const ThoughtsContainer = styled.div`
   }
 `
 
-export default Thoughts
+export default StudioNotes

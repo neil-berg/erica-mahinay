@@ -67,7 +67,7 @@ const PostTemplate = ({ data, pageContext }) => {
         <nav className="next-previous">
           {next && (
             <div className="next">
-              <Link className="next__link" to={`/thoughts/${next.slug}`}>
+              <Link className="next__link" to={`/studio-notes/${next.slug}`}>
                 <span className="next__title">{next.title}</span>
                 <FontAwesomeIcon className="next__icon" icon={faAngleRight} />
               </Link>
@@ -77,7 +77,7 @@ const PostTemplate = ({ data, pageContext }) => {
             <div className="previous">
               <Link
                 className="previous__link"
-                to={`/thoughts/${previous.slug}`}
+                to={`/studio-notes/${previous.slug}`}
               >
                 <FontAwesomeIcon
                   className="previous__icon"
@@ -94,6 +94,10 @@ const PostTemplate = ({ data, pageContext }) => {
 }
 
 const PostContainer = styled.div`
+  .title {
+    padding-bottom: 2rem;
+  }
+
   .body {
     max-width: 600px;
     margin: 0 auto;
@@ -108,6 +112,7 @@ const PostContainer = styled.div`
   .next-previous {
     max-width: 600px;
     margin: 0 auto;
+    padding-top: 2rem;
   }
 
   .next {
