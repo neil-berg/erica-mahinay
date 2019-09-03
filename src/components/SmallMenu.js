@@ -81,8 +81,8 @@ const SmallMenu = () => {
               </Link>
             </li>
             <li className="nav__option-list-item">
-              <Link className="nav__option-list-item-link" to="/thoughts">
-                Studio Bits
+              <Link className="nav__option-list-item-link" to="/studio-notes">
+                Studio Notes
               </Link>
             </li>
           </ul>
