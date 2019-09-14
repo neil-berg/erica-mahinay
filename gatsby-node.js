@@ -21,6 +21,7 @@ exports.createPages = async ({ actions, graphql }) => {
         nodes {
           slug
           title
+          date(formatString: "MMMM YYYY")
         }
       }
     }
@@ -68,6 +69,7 @@ exports.createPages = async ({ actions, graphql }) => {
       context: {
         slug: post.slug,
         title: post.title,
+        date: post.date,
         previous,
         next,
       },
