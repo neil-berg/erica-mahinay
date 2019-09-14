@@ -1,9 +1,12 @@
 import React from "react"
 import styled from "styled-components"
 
-const Footer = ({ location }) => (
+const Footer = () => (
   <StyledFooter>
-    site by <a href="https://neilberg.dev">neil berg</a>
+    site by{" "}
+    <a target="_blank" rel="noopener noreferrer" href="https://neilberg.dev">
+      neil berg
+    </a>
   </StyledFooter>
 )
 

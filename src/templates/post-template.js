@@ -21,7 +21,7 @@ export const query = graphql`
 `
 
 const PostTemplate = ({ data, pageContext }) => {
-  const { title, previous, next } = pageContext
+  const { title, date, previous, next } = pageContext
 
   // Options to render images and videos in the markdown
   const options = {
@@ -58,6 +58,7 @@ const PostTemplate = ({ data, pageContext }) => {
       <PostContainer>
         <div className="body">
           <h2 className="title">{title}</h2>
+          <h3 className="date">{date}</h3>
           {documentToReactComponents(
             data.contentfulBlogPost.childContentfulBlogPostTextRichTextNode
               .json,
@@ -94,8 +95,23 @@ const PostTemplate = ({ data, pageContext }) => {
 }
 
 const PostContainer = styled.div`
+
+  p {
+    margin: 1rem 0;
+    padding: 0;
+  }
+
   .title {
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px var(--sand) solid;
+  }
+
+  .date {
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+    color: var(--sand);
+    font-size: 1.25em;
+    border-bottom: 1px var(--sand) solid;
   }
 
   .body {
@@ -104,9 +120,25 @@ const PostContainer = styled.div`
     color: var(--gold);
   }
 
+  hr {
+    border-bottom: 2px var(--sand) solid;
+  }
+
   img,
   video {
     padding: 1rem 0;
+  }
+
+  a {
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--gold);
+    border-bottom: 1px var(--pink) solid;
+    transition: color 0.3s ease;
+  }
+
+  a:hover {
+    color: var(--pink);
   }
 
   .next-previous {

@@ -18,7 +18,7 @@ export const query = graphql`
         dimensions
         id
         title
-        year(formatString: "YYYY")
+        year
         imageFile {
           fluid(maxWidth: 600) {
             ...GatsbyContentfulFluid_withWebp
@@ -130,6 +130,7 @@ const TemplateWrapper = styled.div`
     font-weight: 400;
     text-decoration: none;
     transition: 0.3s linear;
+    cursor: pointer;
   }
 
   .exhibition__image-list {
