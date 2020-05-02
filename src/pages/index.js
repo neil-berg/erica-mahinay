@@ -19,6 +19,19 @@ const IndexPage = () => {
     </li>
   ))
 
+  const epochLink = (
+    <li className="exhibition-list__item">
+      <a 
+        className="exhibition-list__item-link epoch" 
+        href="https://epoch.gallery/" 
+        target="_blank" 
+        rel="noopener noreferrer"
+      >
+        End Demo
+      </a>
+    </li>
+  )
+
   const exhibitionListItems = exhibitions.map(exhibition => (
     <li className="exhibition-list__item" key={exhibition.id}>
       <Link className="exhibition-list__item-link" to={`/${exhibition.slug}`}>
@@ -43,6 +56,7 @@ const IndexPage = () => {
             <ul>
               <h2 className="onview-list__header">On View</h2>
               {onViewListItems}
+              {epochLink}      
             </ul>
           </div>
         )}
@@ -88,6 +102,10 @@ const Grid = styled.div`
   grid-template-columns: 4fr 1fr;
   grid-template-rows: repeat(3, min-content);
   grid-gap: 1rem;
+
+  .epoch {
+    padding-left: 0.5rem;
+  }
 
   .name {
     grid-column: 2;
@@ -175,6 +193,10 @@ const Grid = styled.div`
     margin: auto;
     grid-template-columns: 1fr 0.75fr 1fr 1fr 0.5fr 1fr;
     grid-template-rows: auto 1fr auto auto 0.5fr;
+
+    .epoch {
+      padding-left: 0;
+    }
 
     .name {
       grid-column: 3 / 4;
