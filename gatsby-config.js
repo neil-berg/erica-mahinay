@@ -45,17 +45,11 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      resolve: `gatsby-plugin-google-fonts`,
       options: {
         fonts: [
-          {
-            family: `Barlow`,
-            variants: [`100`, `200`, `400`],
-          },
-          {
-            family: `Muli`,
-            variants: [`200`, `400`],
-          },
+            `Barlow\:100,200,400`,
+            `Muli\:200,400`,
         ],
       },
     },

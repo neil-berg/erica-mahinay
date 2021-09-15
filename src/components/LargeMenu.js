@@ -24,19 +24,6 @@ const LargeMenu = () => {
     </li>
   ))
 
-  const epochLink = (
-    <li className="nav__option-list-item">
-     <a 
-        className="nav__option-list-item-link" 
-        href="https://epoch.gallery/" 
-        target="_blank" 
-        rel="noopener noreferrer"
-      >
-        End Demo
-      </a>
-    </li>
-  )
-
   return (
     <StyledMenu>
       <h2 className="nav__header">
@@ -49,7 +36,6 @@ const LargeMenu = () => {
           <h3 className="nav__option-header">On View</h3>
           <ul className="nav__option-list">
               {renderOnViewTitles}
-              {epochLink}
           </ul>
         </div>
       )}

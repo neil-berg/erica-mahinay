@@ -19,19 +19,6 @@ const IndexPage = () => {
     </li>
   ))
 
-  const epochLink = (
-    <li className="exhibition-list__item">
-      <a 
-        className="exhibition-list__item-link epoch" 
-        href="https://epoch.gallery/" 
-        target="_blank" 
-        rel="noopener noreferrer"
-      >
-        End Demo
-      </a>
-    </li>
-  )
-
   const exhibitionListItems = exhibitions.map(exhibition => (
     <li className="exhibition-list__item" key={exhibition.id}>
       <Link className="exhibition-list__item-link" to={`/${exhibition.slug}`}>
@@ -55,8 +42,7 @@ const IndexPage = () => {
           <div className="onview-list">
             <ul>
               <h2 className="onview-list__header">On View</h2>
-              {onViewListItems}
-              {epochLink}      
+              {onViewListItems}   
             </ul>
           </div>
         )}
