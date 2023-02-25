@@ -27,7 +27,7 @@ const SmallMenu = () => {
     </li>
   ))
 
-  const renderOnViewTitles = onView.map(item => (
+  const renderFeaturedTitles = onView.map(item => (
     <li className="nav__option-list-item" key={item.id}>
       <Link className="nav__option-list-item-link" to={`/${item.slug}`}>
         {item.title}
@@ -64,9 +64,9 @@ const SmallMenu = () => {
       >
         {onView.length > 0 && (
           <div className="nav__option-container">
-            <h3 className="nav__option-header">On View</h3>
+            <h3 className="nav__option-header">Featured</h3>
             <ul className="nav__option-list">
-              {renderOnViewTitles}
+              {renderFeaturedTitles}
             </ul>
           </div>
         )}

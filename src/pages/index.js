@@ -9,11 +9,14 @@ import "../components/layout.css"
 
 const IndexPage = () => {
   // Retrieve all exhibitions from Contentful
+  // TODO: Change Contentful schema to use "featured" instead of "onview".
+  // For now, we'll still query onView, but update the code to reflect that it's
+  // a collection of featured exhibitions.
   const { onView, exhibitions } = useExhibitions()
 
-  const onViewListItems = onView.map(onView => (
-    <li className="onview-list__item" key={onView.id}>
-      <Link className="onview-list__item-link" to={`/${onView.slug}`}>
+  const featuredListItems = onView.map(onView => (
+    <li className="featured-list__item" key={onView.id}>
+      <Link className="featured-list__item-link" to={`/${onView.slug}`}>
         {onView.title}
       </Link>
     </li>
@@ -39,12 +42,12 @@ const IndexPage = () => {
           </ul>
         </div>
         {onView.length > 0 && (
-          <div className="onview-list">
+          <div className="featured-list">
             <ul>
-              <h2 className="onview-list__header">
+              <h2 className="featured-list__header">
                 Featured
               </h2>
-              {onViewListItems}   
+              {featuredListItems}   
             </ul>
           </div>
         )}
@@ -109,12 +112,12 @@ const Grid = styled.div`
     grid-row: 2;
   }
 
-  .onview-list__item,
-  .onview-list__header {
+  .featured-list__item,
+  .featured-list__header {
     padding-left: 0.5rem;
   }
 
-  .onview-list {
+  .featured-list {
     grid-column: 1;
     grid-row: 1;
     align-self: end;
@@ -137,38 +140,38 @@ const Grid = styled.div`
     text-decoration: none;
   }
 
-  .onview-list__header,
+  .featured-list__header,
   .exhibition-list__header {
     color: var(--sand);
     text-transform: uppercase;
     padding-bottom: 0.5rem;
   }
 
-  .onview-list__item,
+  .featured-list__item,
   .exhibition-list__item {
     line-height: 1em;
     cursor: pointer;
   }
 
-  .onview-list__item:not(:last-child),
+  .featured-list__item:not(:last-child),
   .exhibition-list__item:not(:last-child) {
     padding-bottom: 1em;
   }
 
-  .onview-list__item-link,
+  .featured-list__item-link,
   .exhibition-list__item-link {
     text-decoration: none;
     color: var(--sand);
     transition: 0.3s linear;
   }
 
-  .onview-list__item-link {
+  .featured-list__item-link {
     text-decoration: none;
     color: var(--sand);
   }
 
   @media (hover: hover) {
-    .onview-list__item-link:hover,
+    .featured-list__item-link:hover,
     .exhibition-list__item-link:hover {
       text-decoration: none;
       color: var(--blue);
@@ -207,7 +210,7 @@ const Grid = styled.div`
       padding-left: 0.5rem;
     }
 
-    .onview-list {
+    .featured-list {
       grid-column: 4 / 7;
       grid-row: 2;
       align-self: end;
