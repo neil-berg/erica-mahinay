@@ -41,7 +41,9 @@ const IndexPage = () => {
         {onView.length > 0 && (
           <div className="onview-list">
             <ul>
-              <h2 className="onview-list__header">On View</h2>
+              <h2 className="onview-list__header">
+                Featured
+              </h2>
               {onViewListItems}   
             </ul>
           </div>
