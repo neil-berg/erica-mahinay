@@ -1,10 +1,12 @@
 :root {
   /* --sand: #9c9082; */
-  --sand: #d6bb9b;
+  /* --sand: #d6bb9b; */
+  --sand: #8c5f03;
   --blue: #5e5469;
   --gold: #574724;
   --white: #faf8f5;
-  --pink: #fac7c7;
+  /* --pink: #fac7c7; */
+  --pink: #e90554;
 }
 
 html {

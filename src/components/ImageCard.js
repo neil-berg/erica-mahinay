@@ -29,7 +29,7 @@ const ImageCardWrapper = styled.li`
   .details__year,
   .details__materials,
   .details__dimensions {
-    font-weight: 300;
+    font-weight: 400;
     font-size: 0.8em;
     padding-top: 0.35rem;
     line-height: 1em;
