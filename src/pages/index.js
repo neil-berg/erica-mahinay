@@ -179,7 +179,7 @@ const Grid = styled.div`
   }
 
   @media screen and (min-width: 700px) {
-    transform: rotate(-45deg);
+    transform: rotate(-25deg);
     width: 66vw;
     margin: auto;
     grid-template-columns: 1fr 0.75fr 1fr 1fr 0.5fr 1fr;
