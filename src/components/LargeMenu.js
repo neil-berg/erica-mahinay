@@ -152,6 +152,7 @@ const StyledMenu = styled.nav`
     text-decoration: none;
     transition: all 0.3s linear;
     padding: 0;
+    font-weight: 400;
   }
 
   .email {
