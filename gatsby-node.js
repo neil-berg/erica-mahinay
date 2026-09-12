@@ -3,7 +3,10 @@ const path = require(`path`)
 exports.createPages = async ({ actions, graphql }) => {
   const { data } = await graphql(`
     {
-      allContentfulExhibition(sort: { fields: order, order: ASC }) {
+      allContentfulExhibition(
+        sort: { fields: order, order: ASC }, 
+        filter: { slug: { ne: null } }
+        ) {
         nodes {
           title
           slug
@@ -28,7 +31,7 @@ exports.createPages = async ({ actions, graphql }) => {
   `)
 
   const exhibitions = data.allContentfulExhibition.nodes
-  const posts = data.allContentfulBlogPost.nodes
+  // const posts = data.allContentfulBlogPost.nodes
 
   // Create pages for each exhibition
   exhibitions.forEach((exhibition, index) => {
@@ -59,20 +62,20 @@ exports.createPages = async ({ actions, graphql }) => {
   })
 
   // Create pages for each blog post
-  posts.forEach((post, index) => {
-    const previous = index === posts.length - 1 ? null : posts[index + 1]
-    const next = index === 0 ? null : posts[index - 1]
+  // posts.forEach((post, index) => {
+  //   const previous = index === posts.length - 1 ? null : posts[index + 1]
+  //   const next = index === 0 ? null : posts[index - 1]
 
-    actions.createPage({
-      path: `/studio-notes/${post.slug}`,
-      component: path.resolve(`./src/templates/post-template.js`),
-      context: {
-        slug: post.slug,
-        title: post.title,
-        date: post.date,
-        previous,
-        next,
-      },
-    })
-  })
+  //   actions.createPage({
+  //     path: `/studio-notes/${post.slug}`,
+  //     component: path.resolve(`./src/templates/post-template.js`),
+  //     context: {
+  //       slug: post.slug,
+  //       title: post.title,
+  //       date: post.date,
+  //       previous,
+  //       next,
+  //     },
+  //   })
+  // })
 }

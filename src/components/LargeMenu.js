@@ -44,7 +44,7 @@ const LargeMenu = () => {
         <ul className="nav__option-list">{renderExhibitionTitles}</ul>
       </div>
       <div className="nav__option-container">
-        <h3 className="nav__option-header">Writing</h3>
+        <h3 className="nav__option-header">News</h3>
         <ul className="nav__option-list">
           <li className="nav__option-list-item">
             <Link className="nav__option-list-item-link" to="/press">
@@ -52,8 +52,8 @@ const LargeMenu = () => {
             </Link>
           </li>
           <li className="nav__option-list-item">
-            <Link className="nav__option-list-item-link" to="/studio-notes">
-              Studio Notes
+            <Link className="nav__option-list-item-link" to="/announcements">
+              Announcements
             </Link>
           </li>
         </ul>
