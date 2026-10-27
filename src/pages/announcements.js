@@ -11,7 +11,6 @@ const Announcements = () => {
       allContentfulAnnouncement(sort: { fields: order, order: DESC }) {
         nodes {
           id
-          date
           title
           link
         }
